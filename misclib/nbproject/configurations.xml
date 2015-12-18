@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="95">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <logicalFolder name="HeaderFiles"
+                   displayName="Header Files"
+                   projectFiles="true">
+      <itemPath>DataHandler.h</itemPath>
+      <itemPath>Emitter.h</itemPath>
+      <itemPath>Event.h</itemPath>
+      <itemPath>GeneralRegister.h</itemPath>
+      <itemPath>InstructionWord.h</itemPath>
+      <itemPath>Listener.h</itemPath>
+      <itemPath>Lockable.h</itemPath>
+      <itemPath>SimpleFile.h</itemPath>
+      <itemPath>SuperString.h</itemPath>
+      <itemPath>SystemLog.h</itemPath>
+      <itemPath>SystemTime.h</itemPath>
+      <itemPath>TDate.h</itemPath>
+      <itemPath>Word36.h</itemPath>
+      <itemPath>Worker.h</itemPath>
+      <itemPath>misclib.h</itemPath>
+    </logicalFolder>
+    <logicalFolder name="ResourceFiles"
+                   displayName="Resource Files"
+                   projectFiles="true">
+    </logicalFolder>
+    <logicalFolder name="SourceFiles"
+                   displayName="Source Files"
+                   projectFiles="true">
+      <itemPath>DataHandler.cpp</itemPath>
+      <itemPath>GeneralRegister.cpp</itemPath>
+      <itemPath>InstructionWord.cpp</itemPath>
+      <itemPath>SimpleFile.cpp</itemPath>
+      <itemPath>SuperString.cpp</itemPath>
+      <itemPath>SystemLog.cpp</itemPath>
+      <itemPath>SystemTime.cpp</itemPath>
+      <itemPath>TDate.cpp</itemPath>
+      <itemPath>Word36.cpp</itemPath>
+      <itemPath>Worker.cpp</itemPath>
+      <itemPath>misclib.cpp</itemPath>
+    </logicalFolder>
+    <logicalFolder name="TestFiles"
+                   displayName="Test Files"
+                   projectFiles="false"
+                   kind="TEST_LOGICAL_FOLDER">
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>Makefile</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="Debug" type="3">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <ccTool>
+          <architecture>2</architecture>
+          <standard>8</standard>
+          <warningLevel>2</warningLevel>
+        </ccTool>
+        <archiverTool>
+        </archiverTool>
+      </compileType>
+      <item path="DataHandler.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="DataHandler.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Emitter.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Event.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="GeneralRegister.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="GeneralRegister.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="InstructionWord.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="InstructionWord.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Listener.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Lockable.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="SimpleFile.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="SimpleFile.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="SuperString.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="SuperString.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="SystemLog.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="SystemLog.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="SystemTime.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="SystemTime.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TDate.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="TDate.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Word36.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Word36.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Worker.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Worker.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="misclib.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="misclib.h" ex="false" tool="3" flavor2="0">
+      </item>
+    </conf>
+    <conf name="Release" type="3">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <cTool>
+          <developmentMode>5</developmentMode>
+        </cTool>
+        <ccTool>
+          <developmentMode>5</developmentMode>
+          <architecture>2</architecture>
+          <standard>8</standard>
+          <warningLevel>2</warningLevel>
+        </ccTool>
+        <fortranCompilerTool>
+          <developmentMode>5</developmentMode>
+        </fortranCompilerTool>
+        <asmTool>
+          <developmentMode>5</developmentMode>
+        </asmTool>
+        <archiverTool>
+        </archiverTool>
+      </compileType>
+      <item path="DataHandler.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="DataHandler.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Emitter.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Event.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="GeneralRegister.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="GeneralRegister.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="InstructionWord.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="InstructionWord.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Listener.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Lockable.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="SimpleFile.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="SimpleFile.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="SuperString.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="SuperString.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="SystemLog.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="SystemLog.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="SystemTime.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="SystemTime.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TDate.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="TDate.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Word36.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Word36.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Worker.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Worker.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="misclib.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="misclib.h" ex="false" tool="3" flavor2="0">
+      </item>
+    </conf>
+  </confs>
+</configurationDescriptor>

@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="95">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <logicalFolder name="HeaderFiles"
+                   displayName="Header Files"
+                   projectFiles="true">
+      <itemPath>JSONArrayFormatException.h</itemPath>
+      <itemPath>JSONArrayValue.h</itemPath>
+      <itemPath>JSONAtomicValue.h</itemPath>
+      <itemPath>JSONBooleanValue.h</itemPath>
+      <itemPath>JSONCompositeValue.h</itemPath>
+      <itemPath>JSONConversionException.h</itemPath>
+      <itemPath>JSONException.h</itemPath>
+      <itemPath>JSONNullValue.h</itemPath>
+      <itemPath>JSONNumberFormatException.h</itemPath>
+      <itemPath>JSONNumberValue.h</itemPath>
+      <itemPath>JSONObjectFormatException.h</itemPath>
+      <itemPath>JSONObjectValue.h</itemPath>
+      <itemPath>JSONOutOfTextException.h</itemPath>
+      <itemPath>JSONParser.h</itemPath>
+      <itemPath>JSONStringContentException.h</itemPath>
+      <itemPath>JSONStringEscapeException.h</itemPath>
+      <itemPath>JSONStringUnterminatedException.h</itemPath>
+      <itemPath>JSONStringValue.h</itemPath>
+      <itemPath>JSONTypeException.h</itemPath>
+      <itemPath>JSONValue.h</itemPath>
+      <itemPath>jsonlib.h</itemPath>
+    </logicalFolder>
+    <logicalFolder name="ResourceFiles"
+                   displayName="Resource Files"
+                   projectFiles="true">
+    </logicalFolder>
+    <logicalFolder name="SourceFiles"
+                   displayName="Source Files"
+                   projectFiles="true">
+      <itemPath>JSONArrayValue.cpp</itemPath>
+      <itemPath>JSONBooleanValue.cpp</itemPath>
+      <itemPath>JSONNullValue.cpp</itemPath>
+      <itemPath>JSONNumberValue.cpp</itemPath>
+      <itemPath>JSONObjectValue.cpp</itemPath>
+      <itemPath>JSONParser.cpp</itemPath>
+      <itemPath>JSONStringValue.cpp</itemPath>
+      <itemPath>JSONValue.cpp</itemPath>
+    </logicalFolder>
+    <logicalFolder name="TestFiles"
+                   displayName="Test Files"
+                   projectFiles="false"
+                   kind="TEST_LOGICAL_FOLDER">
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>Makefile</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="Debug" type="3">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>true</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <ccTool>
+          <standard>8</standard>
+          <warningLevel>2</warningLevel>
+        </ccTool>
+        <archiverTool>
+        </archiverTool>
+      </compileType>
+      <item path="JSONArrayFormatException.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="JSONArrayValue.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="JSONArrayValue.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="JSONAtomicValue.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="JSONBooleanValue.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="JSONBooleanValue.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="JSONCompositeValue.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="JSONConversionException.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="JSONException.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="JSONNullValue.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="JSONNullValue.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="JSONNumberFormatException.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="JSONNumberValue.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="JSONNumberValue.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="JSONObjectFormatException.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="JSONObjectValue.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="JSONObjectValue.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="JSONOutOfTextException.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="JSONParser.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="JSONParser.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="JSONStringContentException.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="JSONStringEscapeException.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="JSONStringUnterminatedException.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="JSONStringValue.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="JSONStringValue.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="JSONTypeException.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="JSONValue.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="JSONValue.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="jsonlib.h" ex="false" tool="3" flavor2="0">
+      </item>
+    </conf>
+    <conf name="Release" type="3">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>true</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <cTool>
+          <developmentMode>5</developmentMode>
+        </cTool>
+        <ccTool>
+          <developmentMode>5</developmentMode>
+        </ccTool>
+        <fortranCompilerTool>
+          <developmentMode>5</developmentMode>
+        </fortranCompilerTool>
+        <asmTool>
+          <developmentMode>5</developmentMode>
+        </asmTool>
+        <archiverTool>
+        </archiverTool>
+      </compileType>
+      <item path="JSONArrayFormatException.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="JSONArrayValue.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="JSONArrayValue.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="JSONAtomicValue.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="JSONBooleanValue.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="JSONBooleanValue.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="JSONCompositeValue.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="JSONConversionException.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="JSONException.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="JSONNullValue.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="JSONNullValue.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="JSONNumberFormatException.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="JSONNumberValue.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="JSONNumberValue.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="JSONObjectFormatException.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="JSONObjectValue.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="JSONObjectValue.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="JSONOutOfTextException.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="JSONParser.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="JSONParser.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="JSONStringContentException.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="JSONStringEscapeException.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="JSONStringUnterminatedException.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="JSONStringValue.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="JSONStringValue.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="JSONTypeException.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="JSONValue.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="JSONValue.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="jsonlib.h" ex="false" tool="3" flavor2="0">
+      </item>
+    </conf>
+  </confs>
+</configurationDescriptor>

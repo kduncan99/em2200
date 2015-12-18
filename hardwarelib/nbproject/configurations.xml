@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="95">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <logicalFolder name="HeaderFiles"
+                   displayName="Header Files"
+                   projectFiles="true">
+      <itemPath>ChannelModule.h</itemPath>
+      <itemPath>Controller.h</itemPath>
+      <itemPath>Device.h</itemPath>
+      <itemPath>DiskController.h</itemPath>
+      <itemPath>DiskDevice.h</itemPath>
+      <itemPath>FileSystemDiskDevice.h</itemPath>
+      <itemPath>IOProcessor.h</itemPath>
+      <itemPath>IoAccessControlList.h</itemPath>
+      <itemPath>Node.h</itemPath>
+      <itemPath>Processor.h</itemPath>
+      <itemPath>TapeController.h</itemPath>
+      <itemPath>hardwarelib.h</itemPath>
+    </logicalFolder>
+    <logicalFolder name="ResourceFiles"
+                   displayName="Resource Files"
+                   projectFiles="true">
+    </logicalFolder>
+    <logicalFolder name="SourceFiles"
+                   displayName="Source Files"
+                   projectFiles="true">
+      <itemPath>ChannelModule.cpp</itemPath>
+      <itemPath>Controller.cpp</itemPath>
+      <itemPath>Device.cpp</itemPath>
+      <itemPath>DiskController.cpp</itemPath>
+      <itemPath>DiskDevice.cpp</itemPath>
+      <itemPath>FileSystemDiskDevice.cpp</itemPath>
+      <itemPath>IOProcessor.cpp</itemPath>
+      <itemPath>IoAccessControlList.cpp</itemPath>
+      <itemPath>Node.cpp</itemPath>
+      <itemPath>Processor.cpp</itemPath>
+    </logicalFolder>
+    <logicalFolder name="TestFiles"
+                   displayName="Test Files"
+                   projectFiles="false"
+                   kind="TEST_LOGICAL_FOLDER">
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>Makefile</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="Debug" type="3">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <ccTool>
+          <architecture>2</architecture>
+          <standard>8</standard>
+          <commandlineTool>g++</commandlineTool>
+          <warningLevel>2</warningLevel>
+        </ccTool>
+        <archiverTool>
+        </archiverTool>
+      </compileType>
+      <item path="ChannelModule.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ChannelModule.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Controller.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Controller.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Device.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Device.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="DiskController.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="DiskController.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="DiskDevice.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="DiskDevice.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="FileSystemDiskDevice.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="FileSystemDiskDevice.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="IOProcessor.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="IOProcessor.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="IoAccessControlList.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="IoAccessControlList.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Node.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Node.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Processor.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Processor.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TapeController.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="hardwarelib.h" ex="false" tool="3" flavor2="0">
+      </item>
+    </conf>
+    <conf name="Release" type="3">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <cTool>
+          <developmentMode>5</developmentMode>
+        </cTool>
+        <ccTool>
+          <developmentMode>5</developmentMode>
+          <architecture>2</architecture>
+          <standard>8</standard>
+          <commandlineTool>g++</commandlineTool>
+          <warningLevel>2</warningLevel>
+        </ccTool>
+        <fortranCompilerTool>
+          <developmentMode>5</developmentMode>
+        </fortranCompilerTool>
+        <asmTool>
+          <developmentMode>5</developmentMode>
+        </asmTool>
+        <archiverTool>
+        </archiverTool>
+      </compileType>
+      <item path="ChannelModule.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ChannelModule.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Controller.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Controller.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Device.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Device.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="DiskController.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="DiskController.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="DiskDevice.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="DiskDevice.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="FileSystemDiskDevice.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="FileSystemDiskDevice.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="IOProcessor.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="IOProcessor.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="IoAccessControlList.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="IoAccessControlList.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Node.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Node.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Processor.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Processor.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TapeController.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="hardwarelib.h" ex="false" tool="3" flavor2="0">
+      </item>
+    </conf>
+  </confs>
+</configurationDescriptor>

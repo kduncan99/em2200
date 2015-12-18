@@ -1,0 +1,272 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{F1418180-956E-44FC-A388-4097DE94AC3D}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>execlib</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="AccountManager.h" />
+    <ClInclude Include="Activity.h" />
+    <ClInclude Include="BatchRunInfo.h" />
+    <ClInclude Include="BootActivity.h" />
+    <ClInclude Include="CJKeyin.h" />
+    <ClInclude Include="CoarseSchedulerActivity.h" />
+    <ClInclude Include="Configuration.h" />
+    <ClInclude Include="ConsoleActivity.h" />
+    <ClInclude Include="ConsoleInterface.h" />
+    <ClInclude Include="ConsoleManager.h" />
+    <ClInclude Include="ControlModeRunInfo.h" />
+    <ClInclude Include="ControlStatementActivity.h" />
+    <ClInclude Include="CSInterpreter.h" />
+    <ClInclude Include="CSKeyin.h" />
+    <ClInclude Include="DemandRunInfo.h" />
+    <ClInclude Include="DeviceManager.h" />
+    <ClInclude Include="DiskAllocationTable.h" />
+    <ClInclude Include="DiskFacilityItem.h" />
+    <ClInclude Include="DJKeyin.h" />
+    <ClInclude Include="DNKeyin.h" />
+    <ClInclude Include="DollarBangKeyin.h" />
+    <ClInclude Include="DUKeyin.h" />
+    <ClInclude Include="Exec.h" />
+    <ClInclude Include="execlib.h" />
+    <ClInclude Include="ExecManager.h" />
+    <ClInclude Include="ExecRunInfo.h" />
+    <ClInclude Include="ExtrinsicActivity.h" />
+    <ClInclude Include="FacilitiesKeyin.h" />
+    <ClInclude Include="FacilitiesManager.h" />
+    <ClInclude Include="FacilityItem.h" />
+    <ClInclude Include="FFKeyin.h" />
+    <ClInclude Include="FileAllocationTable.h" />
+    <ClInclude Include="FileSpecification.h" />
+    <ClInclude Include="FSKeyin.h" />
+    <ClInclude Include="IntrinsicActivity.h" />
+    <ClInclude Include="IoActivity.h" />
+    <ClInclude Include="IoManager.h" />
+    <ClInclude Include="JumpKeyKeyin.h" />
+    <ClInclude Include="KeyinActivity.h" />
+    <ClInclude Include="MasterConfigurationTable.h" />
+    <ClInclude Include="MFDManager.h" />
+    <ClInclude Include="MSKeyin.h" />
+    <ClInclude Include="NodeTable.h" />
+    <ClInclude Include="NonStandardFacilityItem.h" />
+    <ClInclude Include="PanelInterface.h" />
+    <ClInclude Include="PollActivity.h" />
+    <ClInclude Include="PREPKeyin.h" />
+    <ClInclude Include="QueueManager.h" />
+    <ClInclude Include="RSIActivity.h" />
+    <ClInclude Include="RSIManager.h" />
+    <ClInclude Include="RSISession.h" />
+    <ClInclude Include="RunConditionWord.h" />
+    <ClInclude Include="RunInfo.h" />
+    <ClInclude Include="RVKeyin.h" />
+    <ClInclude Include="SecurityContext.h" />
+    <ClInclude Include="SecurityManager.h" />
+    <ClInclude Include="SJKeyin.h" />
+    <ClInclude Include="SSKeyin.h" />
+    <ClInclude Include="StandardFacilityItem.h" />
+    <ClInclude Include="SUKeyin.h" />
+    <ClInclude Include="SymbiontBuffer.h" />
+    <ClInclude Include="TapeFacilityItem.h" />
+    <ClInclude Include="Task.h" />
+    <ClInclude Include="TIPRunInfo.h" />
+    <ClInclude Include="TransparentActivity.h" />
+    <ClInclude Include="TransparentCSInterpreter.h" />
+    <ClInclude Include="UPKeyin.h" />
+    <ClInclude Include="UserRunInfo.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AccountManager.cpp" />
+    <ClCompile Include="Activity.cpp" />
+    <ClCompile Include="BatchRunInfo.cpp" />
+    <ClCompile Include="BootActivity.cpp" />
+    <ClCompile Include="CJKeyin.cpp" />
+    <ClCompile Include="CoarseSchedulerActivity.cpp" />
+    <ClCompile Include="Configuration.cpp" />
+    <ClCompile Include="ConsoleActivity.cpp" />
+    <ClCompile Include="ConsoleManager.cpp" />
+    <ClCompile Include="ControlModeRunInfo.cpp" />
+    <ClCompile Include="ControlStatementActivity.cpp" />
+    <ClCompile Include="CSInterpreter.cpp" />
+    <ClCompile Include="CSKeyin.cpp" />
+    <ClCompile Include="DemandActivity.cpp" />
+    <ClCompile Include="DemandRunInfo.cpp" />
+    <ClCompile Include="DeviceManager.cpp" />
+    <ClCompile Include="DiskAllocationTable.cpp" />
+    <ClCompile Include="DiskFacilityItem.cpp" />
+    <ClCompile Include="DJKeyin.cpp" />
+    <ClCompile Include="DNKeyin.cpp" />
+    <ClCompile Include="DollarBangKeyin.cpp" />
+    <ClCompile Include="DUKeyin.cpp" />
+    <ClCompile Include="Exec.cpp" />
+    <ClCompile Include="execlib.cpp" />
+    <ClCompile Include="ExecManager.cpp" />
+    <ClCompile Include="ExecRunInfo.cpp" />
+    <ClCompile Include="FacilitiesKeyin.cpp" />
+    <ClCompile Include="FacilitiesManager.cpp" />
+    <ClCompile Include="FacilitiesManager_ASG.cpp" />
+    <ClCompile Include="FacilitiesManager_CAT.cpp" />
+    <ClCompile Include="FacilitiesManager_FREE.cpp" />
+    <ClCompile Include="FacilityItem.cpp" />
+    <ClCompile Include="FFKeyin.cpp" />
+    <ClCompile Include="FileAllocationTable.cpp" />
+    <ClCompile Include="FileSpecification.cpp" />
+    <ClCompile Include="FSKeyin.cpp" />
+    <ClCompile Include="IntrinsicActivity.cpp" />
+    <ClCompile Include="IoActivity.cpp" />
+    <ClCompile Include="IoManager.cpp" />
+    <ClCompile Include="JumpKeyKeyin.cpp" />
+    <ClCompile Include="KeyinActivity.cpp" />
+    <ClCompile Include="MasterConfigurationTable.cpp" />
+    <ClCompile Include="MFDManager.cpp" />
+    <ClCompile Include="MSKeyin.cpp" />
+    <ClCompile Include="NonStandardFacilityItem.cpp" />
+    <ClCompile Include="PollActivity.cpp" />
+    <ClCompile Include="PREPKeyin.cpp" />
+    <ClCompile Include="QueueManager.cpp" />
+    <ClCompile Include="RSIActivity.cpp" />
+    <ClCompile Include="RSIManager.cpp" />
+    <ClCompile Include="RSISession.cpp" />
+    <ClCompile Include="RunInfo.cpp" />
+    <ClCompile Include="RVKeyin.cpp" />
+    <ClCompile Include="SecurityManager.cpp" />
+    <ClCompile Include="SJKeyin.cpp" />
+    <ClCompile Include="SSKeyin.cpp" />
+    <ClCompile Include="StandardFacilityItem.cpp" />
+    <ClCompile Include="SUKeyin.cpp" />
+    <ClCompile Include="SymbiontBuffer.cpp" />
+    <ClCompile Include="TapeFacilityItem.cpp" />
+    <ClCompile Include="Task.cpp" />
+    <ClCompile Include="TIPRunInfo.cpp" />
+    <ClCompile Include="TransparentActivity.cpp" />
+    <ClCompile Include="TransparentCSInterpreter.cpp" />
+    <ClCompile Include="UPKeyin.cpp" />
+    <ClCompile Include="UserRunInfo.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

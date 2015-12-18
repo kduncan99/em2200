@@ -1,0 +1,411 @@
+--------------------------------------------------------------------------------
+Goals (future)
+
+Removable disk support (see RPMU config parameter)
+TIP
+Intrinsics for various processors
+Intrinsics for MASM, MAP
+Copy of IPF EDIT
+CMR
+Extended Mode Extrinsics
+NPE
+Physical tapes, disks, printers
+INET 1100 (incl. TELNET, RSH, RLOGIN, LPR, FTP, NFS)
+
+--------------------------------------------------------------------------------
+Goals (release 0.13)
+
+Make sure CONSOL batch program works
+ER IOAID$ for access to communications switch
+Use EXMASM, EXMAP to create a CMS-type utility to support DEMAND and TIP modes through communications switch
+    (DEMAND for now - replacing existing temporary exec-local demand or working beside it)
+
+--------------------------------------------------------------------------------
+Goals (release 0.12)
+
+Possibly roll all the following into an external IDE (EXIDE?)
+Support for SDF IO to external disk file
+Support for program file IO to external disk file (incl. some FURPUR-type commands)
+External utilities EXMASM, EXMAP, EXCOPYG between external disk file and NTFS tape volume
+
+--------------------------------------------------------------------------------
+Goals (release 0.11)
+
+Labeled tapes
+Support all other available utilities (i.e., available LIB$ and downloaded 3rd party lib)
+see cgibin.rcn.com/leistlc/cgi-bin/indexbld.pl
+Esp. support ANIMAL
+
+--------------------------------------------------------------------------------
+Goals (release 0.10)
+
+Ability to load ABS element via @XQT or processor call
+Support NCCBs and AFCBs if/as necessary for @ED, @CTS, @BASIC (if not, move this to 1.4)
+Extrinsic execution (including a major subset of IP engine) - basic mode only
+Extrinsic built-ins (maybe?)
+Major subset of Exec Requests
+Support for @ED, @CTS, @BASIC
+RL, RC keyins
+Finish Control Statement Interpreter (esp. @XQT and processor calls)
+DIAG$
+@PMD
+
+--------------------------------------------------------------------------------
+Goals (release 0.9)
+
+Input Queue
+READ$ handling
+batch mode
+@START
+D, ST, RM, B, BL, II keyins
+CS keyin extensions
+
+--------------------------------------------------------------------------------
+Goals (release 0.8)
+
+(inprog) Basic PRINT$ (no BRKPT) -- i.e., output buffer to PRINT$ file
+BRKPT for PRINT$ (maybe for READ$ also)
+@HDG
+@MODE
+Finish SMOQUE
+Support PRINT / PUNCH virtual devices
+SQ, SX, SM keyins
+@ADD
+remaining disk IO (including lock/unlock, extended acquire/release)
+Help infastructure (only having some basic information at first)
+HELP keyin
+   HELP - displays syntax for all commands
+   HELP {command} - display syntax and usage for a specific command
+
+--------------------------------------------------------------------------------
+Goals (release 0.7)
+
+(inprog) Very basic Tape IO (nothing special, no labeled tape support)
+	See REWDRV config parameter
+Support cataloged tape files in MFD
+Remaining tape support in Facilities
+Full SecurityManager
+Full AccountManager
+SV/SR keyins for security (SEC?)
+exutil function for dicking around with SV/SR/SEC tapes
+Save/Reload security file(s) support in AccountManager, SecurityManager
+Loading system files from system (i.e., boot) tape
+
+--------------------------------------------------------------------------------
+Goals (release 0.6)
+
+(not started) Local terminal devices on symbiont controller
+(not started) T, TB, RC, E, X keyins
+(not started) Finish CS keyin for CS {runid}*{parameters}
+(not started) Flesh out RunInfo statuses to facility SS keyin info (counters, flags)
+(not started) QueueManager skeleton mostly
+	Enough SMOQUE to send PRINT$ files to the output queue, and display the queue (no @SYM...?)
+	See SYMBUF config parameter for symbiont buffer size determination
+	If we do @SYM, see SYMJK config parameter
+(not started) Initial support for batch runs (should work from submission to FIN)
+(not started) @@ASG @@CAT @@FREE @@QUAL @@LOG
+	(what happens with @@ASG on hold, and we @FIN, @@X or @@TERM or get E'd or X'd? or Term'd?)
+(not started) @@CONS
+
+--------------------------------------------------------------------------------
+Goals (release 0.5)
+
+(not started) Recovery boot (TODO:RECOV)
+(not started) MFD Recovery for fixed packs (TODO:RECOV)
+	BAD DIR TRACK/BAD DAS LINK - disk address
+	device PARTIALLY RECOVERED, CONTINUE - Y N
+	(Exec) A mass storage unit is partially unrecoverable and some, but not all, files
+	or parts of files residing on the unit are lost.
+(not started) DU keyin canonical format
+(not started) FA, IN keyins
+
+--------------------------------------------------------------------------------
+Goals (release 0.4)
+
+AC Keyin
+Secure Comms Router (JAVA) using HTTPS front-end, non-secure RPC back-end
+Console client (panel and console interface) using HTTPS through router to SSP (javascript?)
+Uniscope client using HTTPS through router (javascript?)
+
+--------------------------------------------------------------------------------
+Goals (release 0.3)
+
+(not started) SymbiontController
+(not started) TerminalDevice (for use by RSI for now - using Symbiont Controller)
+(not started) Complete rework of RSI
+(not started) Batch Mode from RSI (can this fit into 0.2, implies more batch work...?)
+(not started) JAVA Swing remote Uniscope Terminal (for DEMAND client)
+(not started) JAVA Swing remote SSP client
+
+
+--------------------------------------------------------------------------------
+Goals (release 0.2)
+
+(done) Make sure we properly support multiple console devices, device group routing, etc
+(done) Undo all static singleton stuff so that we can have multiple Execs running
+(done) Don't use MDI window - any additional windows should be POPUP style
+(done) Clock offsets so we can set Exec time in the past to give this thing longer life
+(done) FS, SU
+(done) All projects compile with both Windows and Linux
+(inprogress) SSP executable
+    command line functionality for panel, console, system log, configuration, and hardware inventory
+    Automatic reboot if JK3 is not set and Exec stops
+    Keep in mind, later it needs full functionality over RPC
+(inprogress) DeviceManager
+    Needs to support UP, DN, RV, SU keyins (SU done)
+    Is it possible for h/w nodes to change out from under us during execution? NO, DON'T ALLOW THIS
+(not started) D Keyin, also MODIFY CONFIG THEN ENTER DATE AND TIME
+(not started) UP, DN, RV Keyins (TODO:HWCONFIG)
+(not started) At one point we considered doing this - can we? should we?:
+	INITIALIZATION FOR PACK disk-name HAS BEGUN
+	(Exec) During system initialization, the Exec has detected a disk that has no VOL1
+	label. The Exec transparently writes the VOL1 label and directory tracks to the pack.
+	This process takes about 8 to 10 minutes for the 8451 disks, but is instantaneous
+	for all other packs. The pack is initialized with a fixed prep type, and a disk-resident
+	system (DRS) area is allocated.
+	INITIALIZATION FOR PACK pack-id HAS COMPLETED
+	(Exec) The initialization of pack pack-id has finished. Directory tracks and the VOL1
+	label are written.
+
+
+--------------------------------------------------------------------------------
+DONE Goals (release 0.1)
+
+(done) Static configuration of very basic config
+(done) MFD Initialization for fixed (pending rework of BootActivity)
+(done) All MFD functions for fixed (pending above, pending FacMgr completion)
+(done) Basic IO infrastructure
+(done) Disk IO (no lock/unlock, basic acquire/release) fixed only
+(done) $! keyin
+(done) CJ, DJ, SJ keyins
+(done) CS keyin subset
+(done) DU keyin (alternate format)
+(done) PREP keyin (specific to em2200)
+(done) MS keyin
+(done) SS keyin (a lot of it will be blank or zeroes for now)
+(done) FF keyin
+(done) Smart console
+(done) PollActivity - T/D messages - System Status updates
+(done) AccountManager skeleton only
+(done) SecurityManager skeleton only
+(done) Rudimentary DEMAND mode (don't get too happy; we'll redo all this for proper RSI later)
+(done) Control Statement Interpreter (not incl. processor calls)
+(done) Basic facilities ECL (disk files only)
+
+
+--------------------------------------------------------------------------------
+TODO Tags:
+TODO:RECOV		Recovery Boot
+TODO:ABSASG		Absolute assign
+TODO:DEBUG		Things that need to be removed or fixed, once we're done debugging/developing
+TODO:SYMB		Symbionts (hold this until all symbiont work is done)
+TODO:TAPE		Tape Facilities and such
+TODO:REM		Removable Disk
+TODO:ER			Executive Request implementation
+TODO:BATCH		When we actually support a real batch job (incl. READ$, PRINT$, PUNCH$ files)
+TODO:SMOQUE		When we support the output queue manager
+TODO:TASK		When we support tasks (i.e., actual 36-bit programs)
+TODO:BUG		A known bug which can wait until later
+TODO:UTS		Features needed for uniscope which are not yet implemented
+	See bitsavers.informatik.uni-stuttgart.de/pdf/univac/terminals for useful docs
+TODO:UTSCONS	UTS Console implementation (not sure we'll ever do this)
+TODO:RSI		Waiting on rework of RSI to replace temporary code
+TODO:COMM		Waiting on communications to be determined (HLC?)
+TODO:ADD		Waiting on @ADD
+TODO:CONFIG		Waiting on exec configuration ability
+(inprog)TODO:FSKEYIN	FS, DN, RV, SU, UP keyins
+(inprog)TODO:HWCONFIG
+TODO:SEC		Security Manager
+TODO:ACCT		Account Manager
+TODO:TIP		Support for TIP
+TODO:DEFERRED	Something deferred until later, not associated with functionality
+TODO:BRKPT		Waiting for us to support @BRKPT
+TODO:QECL		Support for DCSE (ER QECL$)
+TODO:@DIR
+
+
+--------------------------------------------------------------------------------
+Build Problems:
+
+
+--------------------------------------------------------------------------------
+Known Bugs:
+
+ConsoleManager:
+    Sps we take a stop with an RSI console owning read-replies for some group
+    On reboot, that will not get fixed...
+    So on reboot, ConsMgr needs to ensure all groups have read-replies set (to a system console)
+    Also need to make sure all groups have read-only on at least one console
+
+In catDiskCycle(), what if user specifies G and fileset is not guarded, and vice-versa?
+	similarly for asgCatalogNewDiskCycle()
+
+Possible race condition in temporary RSI handler
+	Occasionally get leading 4 bytes of garbage in front of facilities result,
+	with last 4 bytes of message truncated.  WTH?
+	Added a bunch of checks for attached() to RunInfo, caught and fixed some leaks there.  Might be fixed.
+
+RSIManager - @@TERM brings up new userid/password prompt, and new RSI ACTV message on console,
+	but there wasn't an INACTV message first... very minor issue, but it bugs me
+	This is because we don't want to go inactive before user sees all messages, but if he hits enter,
+	we go back to CONNECTED state which produces the ACTV message -
+	maybe we should crowbar an INACTV message in just before we go CONNECTED...
+	or maybe we should not go ACTV when CONNECTED (go active before that?)
+	or maybe we should not go CONNECTED - go SOLICIT_LOGIN instead?
+
+intermittent:
+	After 034 stop the exec is still running - (something still spinning in the bg?)
+
+deferred:
+	PREP currently makes all disks 'large' disks wrt sector 0 and first DAS.
+	Fix this after we're sure the large format code works
+
+
+--------------------------------------------------------------------------------
+Working on:
+
+emssp
+
+Do we really need DataHandler in misclib?
+
+DN Keyin
+RV Keyin
+UP Keyin
+
+Make sure we do EXERR-052 with MS unavailable
+	Always when we cannot allocate an MFD track
+	Necessary when we cannot allocate a user file track?
+
+DeviceManager work for facilities keyins
+
+--------------------------------------------------------------------------------
+Other things to be done for this release:
+
+Create static const strings for all keys in Configuration class
+
+Convert more enums to enum classes -
+    execlib
+    Exec.h
+    <others>
+
+Do these: (dir-id is not used here)
+	dir-id MS AVAIL GT nnnnnn TRKS
+	dir-id MS AVAIL GT nnnnnn TRKS - SCHEDULING ALLOWED
+	dir-id MS AVAIL GT nnnnnn TRKS - RUNS NOT TERMINATED
+	(Exec) These messages indicate a restoration of fixed mass storage in the specified
+		directory. The appended message text indicates that the system is returning to its
+		normal state.
+	dir-id MS AVAIL GT nnnnnn TRKS - END MS THRESHOLDS
+		(Exec) Mass storage has been restored above the start threshold nnnnnn, and the
+		system is no longer in a critical state.
+	dir-id MS AVAIL LT nnnnnn TRKS
+	dir-id MS AVAIL LT nnnnnn TRKS - SCHEDULING ALLOWED
+	dir-id MS AVAIL LT nnnnnn TRKS - RUNS TERMINATED
+
+Check ????'s...
+
+Interesting messages: Where to use them?
+	NO PACKS DN/UP/PRESENT
+	(Exec) No packs are registered in the system.
+	NO PATH AVAILABLE FOR DEVICE device
+	(Exec) All paths to a device are unavailable.
+	NO PATH AVAILABLE TO ctrl-unit
+	(Exec) No UP paths are available to control unit ctrl-unit.
+
+Interesting message - where does it apply?
+device UNRECOVERABLE, ANS D, I, or X
+(Exec) An entire mass storage unit is unrecoverable, and all files or parts of files
+  residing on that unit are lost. Possible responses are
+	D brings down device.
+	I initializes the pack mounted on device.
+	X initiates a fatal error (XER).
+address is the hardware interface presenting the interrupt.
+status is the interface status received with the interrupt.
+
+
+--------------------------------------------------------------------------------
+Things to be done later:
+
+Recovery boot
+
+MFD Recovery for fixed packs
+	NOT ALL FIXED DEVICES RECOVERED - CONTINUE? YN
+	(Exec) Fixed mass storage devices that were present in the previous session
+	were not recovered on the current reboot. The missing devices should have
+	been displayed by a DEVICE/PACKID NOT RECOVERED message. Call the site
+	administrator.
+
+Symbiont output - increment pages printed
+	This will depend upon the current symbiont format (i.e., lines-per-page)
+	So we cannot do this for real, but we can sort of do it, assuming 60 logical LPP
+	Issues: Do we keep counter in RunInfo or in the Symbiont Buffer?
+			What's the best way to ensure observance of lines-per-page as format changes?
+			How does having BRKPT'd output affect or change lines-per-page?
+			How do we recover the LPP for the main output after returning from BRKPT'd output?
+
+Tailsheet - verify pages printed count
+
+Update ChannelModule as necessary to allow multi-block disk IO
+	problematic, since multi-blocks are not contiguously-packed between blocks
+
+Update IoManager to take advantage of multi-block disk IO
+
+Get rid of state machine in IntrinsicActivity
+
+Split MFDManager into several separate cpp files
+	Wait until we're well into recovery boot, so we don't move functions back and forth repeatedly
+
+For future reference:
+	EABT$ (and maybe unhandled ABORT$) cause termination of @ADD stream in DEMAND mode
+	(causes run termination for batch, of course)
+
+Need a source code fixer
+	Apply copyright notices
+	Fix function headers in .cpp files
+	Convert tabs to spaces (maybe just detect tabs for now, to see how big the problem is)
+
+
+--------------------------------------------------------------------------------
+EMEXEC Feature List:
+
+Status:
+C       Completed - this feature is implemented and supported
+PI      Not completed - Partially implemented
+            Full implementation and supported intended
+NS      Not Supported - implemented, but neither tested nor supported
+            No current plan to test or support
+NI      Not implemented; will be implemented and fully supported at some future point
+NC      Not currently implemented; will be implemented contingent upon detection of 
+desire or need
+NX      Not implemented with no expectation of ever implementing
+
+
+PI		TSS Control, Fundamental Security
+NI		Recovery boot
+NI		36-bit emulation for execution of true 36-bit code
+PI		Support for NTFS-based disk, tape, card punch/reader and printer
+PI		RSI$ ER's and facilities; DEMAND mode
+NI		Removable disk
+NI		Commonbanks (AFCB and NCCB)
+NI		Labeled Tapes
+NI		TIP files
+NI		TIP transactions
+NI		DIAG$ and PMD
+NC		New Programming Environment
+NC		ROLOUT / ROLBAK
+NC		Communications-related ERs beyond those required for TIP
+NC		Database-related ERs
+NC		Security greater than fundamental security
+NC		Support for physical disk
+NC		Support for physical tape
+NC		Support for physical printers
+NC		Audit trails
+NC		Step control
+NC		ER IOAID$ and related code
+NC		File-relative locks
+NC		@FILE and @ENDF - note @FILE has some entries in console messages guide
+NX		Multi-host communication
+NX		Shared MFD
+NX		Multiple console support
+NX		Checkpoint/Restart
+NX		ILES (Independantly-Linked EXEC Subsystems)

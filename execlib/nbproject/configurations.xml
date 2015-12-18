@@ -1,0 +1,755 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="95">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <logicalFolder name="HeaderFiles"
+                   displayName="Header Files"
+                   projectFiles="true">
+      <logicalFolder name="f2" displayName="Activities" projectFiles="true">
+        <itemPath>Activity.h</itemPath>
+        <itemPath>BootActivity.h</itemPath>
+        <itemPath>CoarseSchedulerActivity.h</itemPath>
+        <itemPath>ConsoleActivity.h</itemPath>
+        <itemPath>ControlStatementActivity.h</itemPath>
+        <itemPath>ExtrinsicActivity.h</itemPath>
+        <itemPath>IntrinsicActivity.h</itemPath>
+        <itemPath>IoActivity.h</itemPath>
+        <itemPath>KeyinActivity.h</itemPath>
+        <itemPath>PollActivity.h</itemPath>
+        <itemPath>RSIActivity.h</itemPath>
+        <itemPath>TransparentActivity.h</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f1" displayName="Keyins" projectFiles="true">
+        <itemPath>CJKeyin.h</itemPath>
+        <itemPath>CSKeyin.h</itemPath>
+        <itemPath>DJKeyin.h</itemPath>
+        <itemPath>DNKeyin.h</itemPath>
+        <itemPath>DUKeyin.h</itemPath>
+        <itemPath>DollarBangKeyin.h</itemPath>
+        <itemPath>FFKeyin.h</itemPath>
+        <itemPath>FSKeyin.h</itemPath>
+        <itemPath>FacilitiesKeyin.h</itemPath>
+        <itemPath>JumpKeyKeyin.h</itemPath>
+        <itemPath>MSKeyin.h</itemPath>
+        <itemPath>PREPKeyin.h</itemPath>
+        <itemPath>RVKeyin.h</itemPath>
+        <itemPath>SJKeyin.h</itemPath>
+        <itemPath>SSKeyin.h</itemPath>
+        <itemPath>SUKeyin.h</itemPath>
+        <itemPath>UPKeyin.h</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f3" displayName="Managers" projectFiles="true">
+        <itemPath>AccountManager.h</itemPath>
+        <itemPath>ConsoleManager.h</itemPath>
+        <itemPath>DeviceManager.h</itemPath>
+        <itemPath>ExecManager.h</itemPath>
+        <itemPath>FacilitiesManager.h</itemPath>
+        <itemPath>IoManager.h</itemPath>
+        <itemPath>MFDManager.h</itemPath>
+        <itemPath>QueueManager.h</itemPath>
+        <itemPath>RSIManager.h</itemPath>
+        <itemPath>SecurityManager.h</itemPath>
+      </logicalFolder>
+      <itemPath>BatchRunInfo.h</itemPath>
+      <itemPath>CSInterpreter.h</itemPath>
+      <itemPath>Configuration.h</itemPath>
+      <itemPath>ConsoleInterface.h</itemPath>
+      <itemPath>ControlModeRunInfo.h</itemPath>
+      <itemPath>DemandRunInfo.h</itemPath>
+      <itemPath>DiskAllocationTable.h</itemPath>
+      <itemPath>DiskFacilityItem.h</itemPath>
+      <itemPath>Exec.h</itemPath>
+      <itemPath>ExecRunInfo.h</itemPath>
+      <itemPath>FacilityItem.h</itemPath>
+      <itemPath>FileAllocationTable.h</itemPath>
+      <itemPath>FileSpecification.h</itemPath>
+      <itemPath>MasterConfigurationTable.h</itemPath>
+      <itemPath>NodeTable.h</itemPath>
+      <itemPath>NonStandardFacilityItem.h</itemPath>
+      <itemPath>PanelInterface.h</itemPath>
+      <itemPath>RSISession.h</itemPath>
+      <itemPath>RunConditionWord.h</itemPath>
+      <itemPath>RunInfo.h</itemPath>
+      <itemPath>SecurityContext.h</itemPath>
+      <itemPath>StandardFacilityItem.h</itemPath>
+      <itemPath>SymbiontBuffer.h</itemPath>
+      <itemPath>TIPRunInfo.h</itemPath>
+      <itemPath>TapeFacilityItem.h</itemPath>
+      <itemPath>Task.h</itemPath>
+      <itemPath>TransparentCSInterpreter.h</itemPath>
+      <itemPath>UserRunInfo.h</itemPath>
+      <itemPath>execlib.h</itemPath>
+    </logicalFolder>
+    <logicalFolder name="ResourceFiles"
+                   displayName="Resource Files"
+                   projectFiles="true">
+    </logicalFolder>
+    <logicalFolder name="SourceFiles"
+                   displayName="Source Files"
+                   projectFiles="true">
+      <logicalFolder name="f1" displayName="Activities" projectFiles="true">
+        <itemPath>Activity.cpp</itemPath>
+        <itemPath>BootActivity.cpp</itemPath>
+        <itemPath>CoarseSchedulerActivity.cpp</itemPath>
+        <itemPath>ConsoleActivity.cpp</itemPath>
+        <itemPath>ControlStatementActivity.cpp</itemPath>
+        <itemPath>DemandActivity.cpp</itemPath>
+        <itemPath>IntrinsicActivity.cpp</itemPath>
+        <itemPath>IoActivity.cpp</itemPath>
+        <itemPath>KeyinActivity.cpp</itemPath>
+        <itemPath>PollActivity.cpp</itemPath>
+        <itemPath>RSIActivity.cpp</itemPath>
+        <itemPath>TransparentActivity.cpp</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f2" displayName="Keyins" projectFiles="true">
+        <itemPath>CJKeyin.cpp</itemPath>
+        <itemPath>CSKeyin.cpp</itemPath>
+        <itemPath>DJKeyin.cpp</itemPath>
+        <itemPath>DNKeyin.cpp</itemPath>
+        <itemPath>DUKeyin.cpp</itemPath>
+        <itemPath>DollarBangKeyin.cpp</itemPath>
+        <itemPath>FFKeyin.cpp</itemPath>
+        <itemPath>FSKeyin.cpp</itemPath>
+        <itemPath>FacilitiesKeyin.cpp</itemPath>
+        <itemPath>JumpKeyKeyin.cpp</itemPath>
+        <itemPath>MSKeyin.cpp</itemPath>
+        <itemPath>PREPKeyin.cpp</itemPath>
+        <itemPath>RVKeyin.cpp</itemPath>
+        <itemPath>SJKeyin.cpp</itemPath>
+        <itemPath>SSKeyin.cpp</itemPath>
+        <itemPath>SUKeyin.cpp</itemPath>
+        <itemPath>UPKeyin.cpp</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f3" displayName="Managers" projectFiles="true">
+        <itemPath>AccountManager.cpp</itemPath>
+        <itemPath>ConsoleManager.cpp</itemPath>
+        <itemPath>DeviceManager.cpp</itemPath>
+        <itemPath>ExecManager.cpp</itemPath>
+        <itemPath>FacilitiesManager.cpp</itemPath>
+        <itemPath>FacilitiesManager_ASG.cpp</itemPath>
+        <itemPath>FacilitiesManager_CAT.cpp</itemPath>
+        <itemPath>FacilitiesManager_FREE.cpp</itemPath>
+        <itemPath>IoManager.cpp</itemPath>
+        <itemPath>MFDManager.cpp</itemPath>
+        <itemPath>QueueManager.cpp</itemPath>
+        <itemPath>RSIManager.cpp</itemPath>
+        <itemPath>SecurityManager.cpp</itemPath>
+      </logicalFolder>
+      <itemPath>BatchRunInfo.cpp</itemPath>
+      <itemPath>CSInterpreter.cpp</itemPath>
+      <itemPath>Configuration.cpp</itemPath>
+      <itemPath>ControlModeRunInfo.cpp</itemPath>
+      <itemPath>DemandRunInfo.cpp</itemPath>
+      <itemPath>DiskAllocationTable.cpp</itemPath>
+      <itemPath>DiskFacilityItem.cpp</itemPath>
+      <itemPath>Exec.cpp</itemPath>
+      <itemPath>ExecRunInfo.cpp</itemPath>
+      <itemPath>FacilityItem.cpp</itemPath>
+      <itemPath>FileAllocationTable.cpp</itemPath>
+      <itemPath>FileSpecification.cpp</itemPath>
+      <itemPath>MasterConfigurationTable.cpp</itemPath>
+      <itemPath>NonStandardFacilityItem.cpp</itemPath>
+      <itemPath>RSISession.cpp</itemPath>
+      <itemPath>RunInfo.cpp</itemPath>
+      <itemPath>StandardFacilityItem.cpp</itemPath>
+      <itemPath>SymbiontBuffer.cpp</itemPath>
+      <itemPath>TIPRunInfo.cpp</itemPath>
+      <itemPath>TapeFacilityItem.cpp</itemPath>
+      <itemPath>Task.cpp</itemPath>
+      <itemPath>TransparentCSInterpreter.cpp</itemPath>
+      <itemPath>UserRunInfo.cpp</itemPath>
+      <itemPath>execlib.cpp</itemPath>
+    </logicalFolder>
+    <logicalFolder name="TestFiles"
+                   displayName="Test Files"
+                   projectFiles="false"
+                   kind="TEST_LOGICAL_FOLDER">
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>Makefile</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="Debug" type="3">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <ccTool>
+          <architecture>2</architecture>
+          <standard>8</standard>
+          <warningLevel>2</warningLevel>
+        </ccTool>
+        <archiverTool>
+        </archiverTool>
+      </compileType>
+      <item path="AccountManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="AccountManager.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Activity.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Activity.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="BatchRunInfo.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="BatchRunInfo.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="BootActivity.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="BootActivity.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="CJKeyin.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="CJKeyin.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="CSInterpreter.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="CSInterpreter.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="CSKeyin.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="CSKeyin.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="CoarseSchedulerActivity.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="CoarseSchedulerActivity.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Configuration.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Configuration.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ConsoleActivity.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ConsoleActivity.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ConsoleInterface.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ConsoleManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ConsoleManager.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ControlModeRunInfo.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ControlModeRunInfo.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ControlStatementActivity.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ControlStatementActivity.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="DJKeyin.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="DJKeyin.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="DNKeyin.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="DNKeyin.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="DUKeyin.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="DUKeyin.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="DemandActivity.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="DemandRunInfo.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="DemandRunInfo.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="DeviceManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="DeviceManager.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="DiskAllocationTable.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="DiskAllocationTable.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="DiskFacilityItem.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="DiskFacilityItem.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="DollarBangKeyin.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="DollarBangKeyin.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Exec.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Exec.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ExecManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ExecManager.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ExecRunInfo.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ExecRunInfo.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ExtrinsicActivity.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="FFKeyin.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="FFKeyin.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="FSKeyin.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="FSKeyin.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="FacilitiesKeyin.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="FacilitiesKeyin.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="FacilitiesManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="FacilitiesManager.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="FacilitiesManager_ASG.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="FacilitiesManager_CAT.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="FacilitiesManager_FREE.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="FacilityItem.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="FacilityItem.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="FileAllocationTable.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="FileAllocationTable.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="FileSpecification.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="FileSpecification.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="IntrinsicActivity.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="IntrinsicActivity.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="IoActivity.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="IoActivity.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="IoManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="IoManager.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="JumpKeyKeyin.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="JumpKeyKeyin.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="KeyinActivity.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="KeyinActivity.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="MFDManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="MFDManager.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="MSKeyin.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="MSKeyin.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="MasterConfigurationTable.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="MasterConfigurationTable.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="NodeTable.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="NonStandardFacilityItem.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="NonStandardFacilityItem.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="PREPKeyin.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="PREPKeyin.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="PanelInterface.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="PollActivity.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="PollActivity.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="QueueManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="QueueManager.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="RSIActivity.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="RSIActivity.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="RSIManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="RSIManager.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="RSISession.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="RSISession.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="RVKeyin.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="RVKeyin.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="RunConditionWord.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="RunInfo.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="RunInfo.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="SJKeyin.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="SJKeyin.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="SSKeyin.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="SSKeyin.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="SUKeyin.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="SUKeyin.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="SecurityContext.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="SecurityManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="SecurityManager.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="StandardFacilityItem.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="StandardFacilityItem.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="SymbiontBuffer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="SymbiontBuffer.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TIPRunInfo.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="TIPRunInfo.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TapeFacilityItem.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="TapeFacilityItem.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Task.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Task.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TransparentActivity.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="TransparentActivity.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TransparentCSInterpreter.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="TransparentCSInterpreter.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="UPKeyin.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="UPKeyin.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="UserRunInfo.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="UserRunInfo.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="execlib.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="execlib.h" ex="false" tool="3" flavor2="0">
+      </item>
+    </conf>
+    <conf name="Release" type="3">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <cTool>
+          <developmentMode>5</developmentMode>
+        </cTool>
+        <ccTool>
+          <developmentMode>5</developmentMode>
+          <architecture>2</architecture>
+          <standard>8</standard>
+          <warningLevel>2</warningLevel>
+        </ccTool>
+        <fortranCompilerTool>
+          <developmentMode>5</developmentMode>
+        </fortranCompilerTool>
+        <asmTool>
+          <developmentMode>5</developmentMode>
+        </asmTool>
+        <archiverTool>
+        </archiverTool>
+      </compileType>
+      <item path="AccountManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="AccountManager.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Activity.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Activity.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="BatchRunInfo.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="BatchRunInfo.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="BootActivity.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="BootActivity.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="CJKeyin.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="CJKeyin.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="CSInterpreter.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="CSInterpreter.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="CSKeyin.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="CSKeyin.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="CoarseSchedulerActivity.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="CoarseSchedulerActivity.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Configuration.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Configuration.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ConsoleActivity.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ConsoleActivity.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ConsoleInterface.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ConsoleManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ConsoleManager.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ControlModeRunInfo.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ControlModeRunInfo.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ControlStatementActivity.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ControlStatementActivity.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="DJKeyin.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="DJKeyin.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="DNKeyin.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="DNKeyin.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="DUKeyin.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="DUKeyin.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="DemandActivity.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="DemandRunInfo.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="DemandRunInfo.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="DeviceManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="DeviceManager.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="DiskAllocationTable.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="DiskAllocationTable.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="DiskFacilityItem.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="DiskFacilityItem.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="DollarBangKeyin.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="DollarBangKeyin.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Exec.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Exec.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ExecManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ExecManager.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ExecRunInfo.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ExecRunInfo.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ExtrinsicActivity.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="FFKeyin.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="FFKeyin.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="FSKeyin.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="FSKeyin.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="FacilitiesKeyin.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="FacilitiesKeyin.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="FacilitiesManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="FacilitiesManager.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="FacilitiesManager_ASG.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="FacilitiesManager_CAT.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="FacilitiesManager_FREE.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="FacilityItem.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="FacilityItem.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="FileAllocationTable.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="FileAllocationTable.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="FileSpecification.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="FileSpecification.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="IntrinsicActivity.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="IntrinsicActivity.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="IoActivity.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="IoActivity.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="IoManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="IoManager.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="JumpKeyKeyin.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="JumpKeyKeyin.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="KeyinActivity.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="KeyinActivity.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="MFDManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="MFDManager.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="MSKeyin.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="MSKeyin.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="MasterConfigurationTable.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="MasterConfigurationTable.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="NodeTable.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="NonStandardFacilityItem.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="NonStandardFacilityItem.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="PREPKeyin.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="PREPKeyin.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="PanelInterface.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="PollActivity.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="PollActivity.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="QueueManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="QueueManager.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="RSIActivity.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="RSIActivity.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="RSIManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="RSIManager.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="RSISession.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="RSISession.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="RVKeyin.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="RVKeyin.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="RunConditionWord.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="RunInfo.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="RunInfo.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="SJKeyin.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="SJKeyin.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="SSKeyin.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="SSKeyin.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="SUKeyin.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="SUKeyin.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="SecurityContext.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="SecurityManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="SecurityManager.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="StandardFacilityItem.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="StandardFacilityItem.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="SymbiontBuffer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="SymbiontBuffer.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TIPRunInfo.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="TIPRunInfo.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TapeFacilityItem.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="TapeFacilityItem.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Task.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Task.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TransparentActivity.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="TransparentActivity.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TransparentCSInterpreter.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="TransparentCSInterpreter.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="UPKeyin.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="UPKeyin.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="UserRunInfo.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="UserRunInfo.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="execlib.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="execlib.h" ex="false" tool="3" flavor2="0">
+      </item>
+    </conf>
+  </confs>
+</configurationDescriptor>

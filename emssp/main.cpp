@@ -1,6 +1,7 @@
 //  SSP command line utility for emulated exec
 
-//???? Need /Call {file_name} command for executing scripts (needs to be stack-based, so scripts can invoke /call))
+//???? All output should go through sendCallMessage() (which should probably be renamed)
+//      Anything at depth 0 should not emit a prefix
 
 
 
@@ -46,6 +47,7 @@ static bool     getJumpKeys( const std::list<SuperString>&      parameters,
 static void     parameterize( SuperString&                  input,
                               std::list<SuperString>* const pParameters );
 static bool     processCommand( const SuperString&  input );
+static void     sendCallMessage( const std::string& message );
 static void     showJumpKeysSet();
 
 
@@ -231,14 +233,14 @@ static bool                     TermFlag = false;
 //
 //  Loads a script and executes the commands there-in
 static bool
-callhandler
+callHandler
 (
     const std::list<SuperString>& parameters
 )
 {
     if ( parameters.size() > 0 )
     {
-        SuperString& fileName = parameters.front();
+        const SuperString& fileName = parameters.front();
 
         std::fstream fileStream;
         fileStream.open( fileName, std::ios_base::in );
@@ -249,26 +251,62 @@ callhandler
         }
 
         ++CallDepth;
-        std::cout << "[" << CallDepth << "]:Executing '" << fileName << "'..." << std::endl;
+        sendCallMessage( "Executing '" + fileName + "'..." );
 
         bool failFlag = false;
         while ( !fileStream.eof() )
         {
-            std::string inputText;
+            SuperString inputText;
             std::getline( fileStream, inputText );
+            if ( fileStream.eof() )
+                break;
             if ( fileStream.fail() )
             {
+                sendCallMessage( "Error reading from file" );
                 failFlag = true;
                 break;
             }
 
-            std::cout << "[" << inputText << "]" << std::endl;//????
+            //  Parse the input, then invoke the command.
+            //  Empty lines and lines which begin with '#' are ignored.
+            //  If the command handler returns false, then we should set failFlag and stop.
+            //  If at any point termFlag is set, we should clear it and stop, as this only quits the script,
+            //  not emssp execution.
+            inputText.trimLeadingSpaces();
+            inputText.trimTrailingSpaces();
+            if ( (inputText.size() > 0) && (inputText[0] != '#') )
+            {
+                //  Does the input begin with a slash character?  If so, it's a command
+                if ( inputText[0] == '/' )
+                {
+                    sendCallMessage( ">" + inputText );
+                    if ( !processCommand( inputText ) )
+                    {
+                        failFlag = true;
+                        break;
+                    }
+
+                    if ( TermFlag )
+                    {
+                        //  script set term flag - reinterpret this as exit
+                        TermFlag = false;
+                        break;
+                    }
+                }
+                else
+                {
+                    //  Not a command, it is something... strange
+                    sendCallMessage( "Invalid text in script:'" + inputText + "'" );
+                    failFlag = true;
+                    break;
+                }
+            }
         }
 
         if ( failFlag )
-            std::cout << "[" << CallDepth << "]:Aborted" << std::endl;
+            sendCallMessage( "Aborted" );
         else
-            std::cout << "[" << CallDepth << "]:End of file '" << fileName << "'" << std::endl;
+            sendCallMessage( "End of file '" + fileName + "'" );
 
         --CallDepth;
         fileStream.close();
@@ -1121,7 +1159,10 @@ quitHandler
     }
 
     TermFlag = true;
-    std::cout << "Terminating..." << std::endl;
+    if ( CallDepth > 0 )
+        std::cout << "Exiting script" << std::endl;
+    else
+        std::cout << "Terminating..." << std::endl;
     return true;
 }
 
@@ -1272,6 +1313,19 @@ processCommand
 
     parameterize( temp, &parameters );
     return handler( parameters );
+}
+
+
+//  sendCallMessage()
+//
+//  Convenience method for sending call-depth-tagged output to the console
+static void
+sendCallMessage
+(
+    const std::string&  message
+)
+{
+    std::cout << "[" << CallDepth << "]:" << message << std::endl;
 }
 
 

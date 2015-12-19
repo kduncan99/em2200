@@ -1422,7 +1422,7 @@ PersistableNodeTable::load
     {
         pValue = parser.parse( str );
     }
-    catch (JSONException * pe)
+    catch (JSONException* pe)
     {
         unlock();
         return Result::ParseError;

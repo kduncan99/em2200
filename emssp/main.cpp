@@ -168,6 +168,7 @@ static Command MediaCommand( 0,
 
 static Command NodeCommand( 0,
                             "/NODE CONFIG [ LOAD | SAVE ] [ {file_name} ]\n"
+                                    "/NODE CONFIG LIST\n"
                                     "/NODE DEVICE CREATE {device_name} {device_type} {device_model} {subsystem_name}\n"
                                     "/NODE DEVICE DELETE {device_name}\n"
                                     "/NODE DEVICE LIST\n"
@@ -693,7 +694,7 @@ nodeConfigHandler
             PersistableNodeTable::Result result = pNodeTable->load( fileName );
             if ( result != PersistableNodeTable::Result::Success )
             {
-                std::cout << "Error:" << PersistableNodeTable::getResultString( result );
+                std::cout << "Error:" << PersistableNodeTable::getResultString( result ) << std::endl;
                 return false;
             }
 
@@ -705,12 +706,16 @@ nodeConfigHandler
             PersistableNodeTable::Result result = pNodeTable->save( fileName );
             if ( result != PersistableNodeTable::Result::Success )
             {
-                std::cout << "Error:" << PersistableNodeTable::getResultString( result );
+                std::cout << "Error:" << PersistableNodeTable::getResultString( result ) << std::endl;
                 return false;
             }
 
             std::cout << "Hardware configuration saved" << std::endl;
             return true;
+        }
+        else if ( parameters.front().compareNoCase( "LIST" ) == 0 )
+        {
+            //???? short list of all the nodes
         }
     }
 
@@ -747,8 +752,6 @@ nodeIopHandler
     const std::list<SuperString>& parameters
 )
 {
-//  "/NODE IOP [ CREATE | LIST ]\n"
-//  "/NODE IOP [ DELETE | SHOW ] {iop_name}\n"
     if ( parameters.size() > 0 )
     {
         if ( parameters.front().compareNoCase( "CREATE" ) == 0 )
@@ -773,10 +776,16 @@ nodeIopHandler
             for ( auto it = iops.begin(); it != iops.end(); ++it )
             {
                 const IOProcessor* piop = it->second;
-                std::cout << "IOProcessor " << piop->getName() << " contains the following channel modules:" << std::endl;
+
+                std::stringstream strm;
+                strm << "IOProcessor " << piop->getName() << " contains:";
                 const Node::CHILDNODES& chmods = piop->getChildNodes();
+                if ( chmods.size() == 0 )
+                    strm << " <none>";
                 for ( auto itcm = chmods.begin(); itcm != chmods.end(); ++itcm )
-                    std::cout << "  " << itcm->first << ":  " << itcm->second->getName() << std::endl;
+                    strm << "  [" << itcm->first << "]:" << itcm->second->getName();
+
+                std::cout << strm.str() << std::endl;
             }
             return true;
         }

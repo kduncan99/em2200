@@ -951,14 +951,74 @@ nodeSubSystemHandler
         else if ( itparm->compareNoCase( "CREATE" ) == 0 )
         {
             //  /NODE SUBSYSTEM CREATE {subsystem_name} [ DISK | TAPE | SYMBIONT ] [ REDUNDANT ]
-            sendOutput( "Not yet implemented" );
-            return false;//????
+            if ( (parameters.size() >= 3) && (parameters.size() <= 4) )
+            {
+                ++itparm;
+                SuperString subName = *itparm;
+                ++itparm;
+                SuperString subType = *itparm;
+                ++itparm;
+                bool redundant = false;
+                if ( itparm != parameters.end() )
+                {
+                    if ( itparm->compareNoCase( "REDUNDANT" ) == 0 )
+                        redundant = true;
+                    else
+                    {
+                        sendOutput( SyntaxErrorMsg );
+                        return false;
+                    }
+                }
+
+                Controller::ControllerType ctlType;
+                if ( subType.compareNoCase( "DISK" ) == 0 )
+                    ctlType = Controller::ControllerType::DISK;
+#if 0   //TODO:SYM
+                else if ( subType.compareNoCase( "SYMBIONT" ) == 0 )
+                    ctlType = Controller::ControllerType::SYMBIONT;
+#endif
+#if 0   //TODO:TAPE
+                else if ( subType.compareNoCase( "TAPE" ) == 0 )
+                    ctlType = Controller::ControllerType::TAPE;
+#endif
+                else
+                {
+                    sendOutput( SyntaxErrorMsg );
+                    return false;
+                }
+
+                PersistableNodeTable::Result result = pNodeTable->createSubSystem( subName, ctlType, redundant );
+                if ( result != PersistableNodeTable::Result::Success )
+                {
+                    std::stringstream strm;
+                    strm << "Error:" << PersistableNodeTable::getResultString( result );
+                    sendOutput( strm.str() );
+                    return false;
+                }
+
+                sendOutput( "SubSystem created" );
+                return true;
+            }
         }
         else if ( itparm->compareNoCase( "DELETE" ) == 0 )
         {
             //  /NODE SUBSYSTEM DELETE {subsystem_name}
-            sendOutput( "Not yet implemented" );
-            return false;//????
+            if ( parameters.size() == 2 )
+            {
+                ++itparm;
+                SuperString subName = *itparm;
+                PersistableNodeTable::Result result = pNodeTable->deleteSubSystem( subName );
+                if ( result != PersistableNodeTable::Result::Success )
+                {
+                    std::stringstream strm;
+                    strm << "Error:" << PersistableNodeTable::getResultString( result );
+                    sendOutput( strm.str() );
+                    return false;
+                }
+
+                sendOutput( "SubSystem deleted" );
+                return true;
+            }
         }
         else if ( itparm->compareNoCase( "DETACH" ) == 0 )
         {
@@ -969,14 +1029,65 @@ nodeSubSystemHandler
         else if ( itparm->compareNoCase( "LIST" ) == 0 )
         {
             //  /NODE SUBSYSTEM LIST
-            sendOutput( "Not yet implemented" );
-            return false;//????
+            if ( parameters.size() == 1 )
+            {
+                const PersistableNodeTable::SUBSYSTEMS& subsystems = pNodeTable->getSubSystems();
+                for ( auto it = subsystems.begin(); it != subsystems.end(); ++it )
+                {
+                    SubSystem* psub = it->second;
+                    std::stringstream strm;
+                    strm << "  " << psub->getName();
+                    strm << "  (" << psub->getControllers().front()->getControllerTypeString() << ")";
+                    sendOutput( strm.str() );
+                }
+
+                return true;
+            }
         }
         else if ( itparm->compareNoCase( "SHOW" ) == 0 )
         {
             //  /NODE SUBSYSTEM SHOW {subsystem_name}
-            sendOutput( "Not yet implemented" );
-            return false;//????
+            if ( parameters.size() == 2 )
+            {
+                ++itparm;
+                SuperString subName = *itparm;
+
+                SubSystem* psub = pNodeTable->getSubSystem( subName );
+                if ( psub == 0 )
+                {
+                    sendOutput( "Error:No subsystem found with that name" );
+                    return false;
+                }
+
+                const std::list<ChannelModule*>& channelModules = psub->getChannelModules();
+                const std::list<Controller*>& controllers = psub->getControllers();
+                const std::list<Device*>& devices = psub->getDevices();
+
+                std::stringstream strm;
+                strm << "Subsystem " << psub->getName();
+                strm << "  (" << controllers.front()->getControllerTypeString() << ")";
+                sendOutput( strm.str() );
+
+                strm.str("");
+                strm << "  Attached to: ";
+                for ( auto itcm = channelModules.begin(); itcm != channelModules.end(); ++itcm )
+                    strm << " " << (*itcm)->getName();
+                sendOutput( strm.str() );
+
+                strm.str("");
+                strm << "  Controllers: ";
+                for ( auto itctl = controllers.begin(); itctl != controllers.end(); ++itctl )
+                    strm << " " << (*itctl)->getName();
+                sendOutput( strm.str() );
+
+                strm.str("");
+                strm << "  Devices:     ";
+                for ( auto itdev = devices.begin(); itdev != devices.end(); ++itdev )
+                    strm << " " << (*itdev)->getName();
+                sendOutput( strm.str() );
+
+                return true;
+            }
         }
     }
 

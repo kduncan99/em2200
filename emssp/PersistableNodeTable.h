@@ -112,6 +112,23 @@ public:
 
     //  Use these carefully - they may change value unexpectedly in multi-threaded contexts
     inline const IOPROCESSORS&  getIoProcessors() const     { return m_IoProcessors; }
+
+    inline SubSystem*           getSubSystem( const SuperString& subSystemName ) const
+    {
+        SubSystem* psub = 0;
+        lock();
+        for ( auto itsub = m_SubSystems.begin(); itsub != m_SubSystems.end(); ++itsub )
+        {
+            if ( subSystemName.compareNoCase( itsub->second->getName() ) == 0 )
+            {
+                psub = itsub->second;
+                break;
+            }
+        }
+        unlock();
+        return psub;
+    }
+
     inline const SUBSYSTEMS&    getSubSystems() const       { return m_SubSystems; }
     inline bool                 isUpdated() const           { return m_IsUpdated; }
 

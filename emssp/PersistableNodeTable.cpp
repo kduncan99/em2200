@@ -192,20 +192,28 @@ PersistableNodeTable::createSubSystemInt
     std::list<Controller*> controllers;
     for ( INDEX cx = 0; cx < controllerNames.size(); ++cx )
     {
+        Controller* pctl;
         switch ( controllerType )
         {
         case Controller::ControllerType::DISK:
-            controllers.push_back( new DiskController( controllerNames[cx] ) );
+            pctl = new DiskController( controllerNames[cx] );
             break;
 
         case Controller::ControllerType::SYMBIONT:
-            //TODO:SYM controllers.push_back( new SymbiontController( controllerNames[cx] ) );
+#if 0 //TODO:SYM
+            pctl = new SymbiontController( controllerNames[cx] );
+#endif
             break;
 
         case Controller::ControllerType::TAPE:
-            controllers.push_back( new TapeController( controllerNames[cx] ) );
+#if 0 //TODO:TAPE
+            pctl = new TapeController( controllerNames[cx] );
+#endif
             break;
         }
+
+        controllers.push_back( pctl );
+        m_NodeSet.insert( pctl );
     }
 
     SubSystem* pss = new SubSystem( subSystemName, controllers );

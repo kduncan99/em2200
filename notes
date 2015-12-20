@@ -235,6 +235,9 @@ Build Problems:
 --------------------------------------------------------------------------------
 Known Bugs:
 
+PersistableNodeTable:
+    does not create unique controller names after creating 2nd disk subsystem
+
 ConsoleManager:
     Sps we take a stop with an RSI console owning read-replies for some group
     On reboot, that will not get fixed...

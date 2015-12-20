@@ -23,6 +23,7 @@ public:
     {
         Success,
         AlreadyConnected,
+        ChannelModuleStillConnected,
         FileCloseFailed,
         FileIoFailed,
         FileOpenFailed,

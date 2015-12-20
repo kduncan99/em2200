@@ -1217,8 +1217,19 @@ PersistableNodeTable::deleteIoProcessor
         return Result::NodeDoesNotExist;
     }
 
-    //  Delete channel modules (no need to deregister them), remove the IOP from our list, then delete it.
+    //  Are any channel modules still connected to any controllers?
     IOProcessor* piop = it->second;
+    for ( auto itcm = piop->getChildNodes().begin(); itcm != piop->getChildNodes().end(); ++itcm )
+    {
+        ChannelModule* pcm = dynamic_cast<ChannelModule*>(itcm->second);
+        if ( pcm->getChildNodes().size() > 0 )
+        {
+            unlock();
+            return Result::ChannelModuleStillConnected;
+        }
+    }
+
+    //  Delete channel modules (no need to deregister them), remove the IOP from our list, then delete it.
     for ( auto itcm = piop->getChildNodes().begin(); itcm != piop->getChildNodes().end(); ++itcm )
     {
         ChannelModule* pcm = dynamic_cast<ChannelModule*>(itcm->second);
@@ -1514,18 +1525,19 @@ PersistableNodeTable::getResultString
 {
     switch ( result )
     {
-    case Result::AlreadyConnected:          return "The subsystem is already connected";
-    case Result::FileCloseFailed:           return "File close failed";
-    case Result::FileIoFailed:              return "File IO failed";
-    case Result::FileOpenFailed:            return "File open failed";
-    case Result::GeneratedNameConflict:     return "There is a conflict in automatically generated names";
-    case Result::MountFailed:               return "Mount Failed";
-    case Result::NameIsInvalid:             return "A proposed name is invalid";
-    case Result::NameIsNotUnique:           return "A proposed name is not unique";
-    case Result::NodeDoesNotExist:          return "A requested entity does not exist for the given name";
-    case Result::ParseError:                return "Parse error occurred while loading the node table";
-    case Result::Success:                   return "Success";
-    case Result::TypeConflict:              return "Type conflict";
+    case Result::AlreadyConnected:              return "The subsystem is already connected";
+    case Result::ChannelModuleStillConnected:   return "At least one channel module is still connected to a controller";
+    case Result::FileCloseFailed:               return "File close failed";
+    case Result::FileIoFailed:                  return "File IO failed";
+    case Result::FileOpenFailed:                return "File open failed";
+    case Result::GeneratedNameConflict:         return "There is a conflict in automatically generated names";
+    case Result::MountFailed:                   return "Mount Failed";
+    case Result::NameIsInvalid:                 return "A proposed name is invalid";
+    case Result::NameIsNotUnique:               return "A proposed name is not unique";
+    case Result::NodeDoesNotExist:              return "A requested entity does not exist for the given name";
+    case Result::ParseError:                    return "Parse error occurred while loading the node table";
+    case Result::Success:                       return "Success";
+    case Result::TypeConflict:                  return "Type conflict";
     }
 
     return "???";

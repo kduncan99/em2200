@@ -269,6 +269,7 @@ deferred:
 Working on:
 
 emssp
+    hardware config manipuation
 
 Do we really need DataHandler in misclib?
 

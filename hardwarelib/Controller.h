@@ -1,4 +1,5 @@
 //  Controller.h
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //  Header file for a generic virtual controller.
 //  Superclassed from hwlib's Node, because we use hwlib Device's and they need Node's to talk to.

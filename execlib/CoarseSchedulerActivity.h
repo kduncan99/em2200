@@ -1,4 +1,5 @@
 //  CoarseSchedulerActivity.h
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //  Object which handles control mode for demand and batch modes
 

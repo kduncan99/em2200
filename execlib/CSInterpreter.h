@@ -1,4 +1,5 @@
 //  CSInterpreter
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //  General control statement interpreter
 

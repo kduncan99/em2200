@@ -1,4 +1,5 @@
 //  FileSystemDiskDevice.cpp
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //  FileSystemDiskDevice class definition - emulates a disk device in a system file.
 //

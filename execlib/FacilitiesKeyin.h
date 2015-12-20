@@ -1,4 +1,5 @@
 //  FacilitiesKeyin.h
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //  Describes functionality and data common to FD, DN, SU, RV, and UP keyins.
 //  This is NOT abstract, because it has to instantiate itself for purposes of maintaining the static lock.

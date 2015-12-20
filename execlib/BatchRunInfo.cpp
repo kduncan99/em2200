@@ -1,4 +1,5 @@
 //  BatchRunInfo implementation
+//  Copyright (c) 2015 by Kurt Duncan
 
 
 

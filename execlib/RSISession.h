@@ -1,4 +1,5 @@
 //  RSISession.h
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //  Tracks a single RSI session for RSIManager
 

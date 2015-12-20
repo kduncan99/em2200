@@ -1,4 +1,5 @@
 //  MFDManager.h
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //  MFD manager for Emulated Exec
 //  Handles all MFD-related calisthenics, as well as file allocation / track allocation etc.

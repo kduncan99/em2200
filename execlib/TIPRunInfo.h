@@ -1,4 +1,5 @@
 //  TIPRunInfo class declaration
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //  Anything specific to TIP transactions (which are a special kind of run)
 

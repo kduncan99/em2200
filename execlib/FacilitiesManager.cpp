@@ -1,4 +1,5 @@
 //  Facilities class implementation
+//  Copyright (c) 2015 by Kurt Duncan
 
 
 
@@ -348,7 +349,7 @@ FacilitiesManager::checkCycleConstraints
                 logMFDError( context, "FacilitiesManager::checkCycleConstraints", effectiveFileSpec, mfdResult );
                 return false;
             }
- 
+
             //  Is the cycle being dropped, accessible sufficiently to be dropped?
             //  - Private-by-account requires account match with RunInfo
             if ( m_PrivateByAccount

@@ -1,4 +1,5 @@
 //  TransparentActivity.h
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //  Header file for activity which executes a transparent statement for RSI
 

@@ -1,4 +1,5 @@
 //  IOProcessor.h
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //  Virtual IOP - Accepts a ChannelProgram which is a description of an IO to be done
 //  from the Exec's point of view, and queues it onto a particular ChannelModule.

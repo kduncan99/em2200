@@ -1,4 +1,5 @@
 //  JSONTypeException.h
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //  Header file for exceptions relating to functions being called on objects which have a type not compatible with the requested function
 

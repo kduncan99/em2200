@@ -1,4 +1,5 @@
 //  ControlStatementActivity.h
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //  Handles the actual execution of a control statement for a batch or demand run
 

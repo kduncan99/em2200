@@ -1,3 +1,6 @@
+//  ConsoleInterface.h
+//  Copyright (c) 2015 by Kurt Duncan
+//
 //  Represents some entity that implements a console.
 //  ConsoleManager deals with these things...
 //  It is up to the implementation to provide instantiations of this... at least one anyway.

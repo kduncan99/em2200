@@ -1,4 +1,5 @@
 //  JSONValue.h
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //  Abstract base class for all JSON value objects
 

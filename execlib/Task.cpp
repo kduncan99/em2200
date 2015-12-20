@@ -1,4 +1,5 @@
 //  Task
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //  Some basic functionality for Task class
 

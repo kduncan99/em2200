@@ -1,4 +1,5 @@
 //	QueueManager.cpp
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //	Implementation of QueueManager class
 //  Manages input and output queues (i.e., backlog and print/punch queues)

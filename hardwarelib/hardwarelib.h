@@ -1,4 +1,6 @@
 //  hardwarelib header file
+//  Copyright (c) 2015 by Kurt Duncan
+//
 //  All hardwarelib clients should include this, and only this header file (from this library, I mean)
 
 

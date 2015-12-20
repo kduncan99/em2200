@@ -1,3 +1,6 @@
+//  PanelInterface.h
+//  Copyright (c) 2015 by Kurt Duncan
+//
 //  Abstract class which must be instantiated by the implementor.
 //  Used by Exec to communicate with whoever is driving it.
 

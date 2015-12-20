@@ -1,4 +1,5 @@
 //  JSONCompositeValue.h
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //  Base class for all composite values... i.e., objects and arrays
 

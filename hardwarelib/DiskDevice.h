@@ -1,4 +1,5 @@
 //	DiskDevice.h
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //	Base class descriptor of all emulated (and actual) disk nodes
 // 

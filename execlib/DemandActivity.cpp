@@ -1,4 +1,5 @@
 //  DemandActivity
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //  Temporary development version.
 //  Only for testing basic ECL.

@@ -1,4 +1,6 @@
-//  ExtrinsicActivity - an activity which runs in the 36-bit interpreter - something fully compatible with a real 2200.
+//  ExtrinsicActivity - an activity which runs in the 36-bit interpreter
+//  - something fully compatible with a real 2200.
+//  Copyright (c) 2015 by Kurt Duncan
 
 
 

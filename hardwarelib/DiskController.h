@@ -1,4 +1,5 @@
 //  DiskController.h
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //  Header file for a virtual disk controller.
 

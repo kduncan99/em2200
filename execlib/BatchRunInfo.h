@@ -1,4 +1,5 @@
 //  BatchRunInfo class declaration
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //  Some specifics which apply only to batch runs
 

@@ -1,4 +1,5 @@
 //	RSIManager.cpp
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //	Implementation of RSIManager class - debug mode only
 

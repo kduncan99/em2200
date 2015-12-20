@@ -1,4 +1,5 @@
 //  SymbiontBuffer.h
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //  Represents a Symbiont buffer in the RunInfo object
 //

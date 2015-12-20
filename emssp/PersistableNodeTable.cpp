@@ -1,4 +1,6 @@
 //  Implementation of PersistableNodeTable
+//  Copyright (c) 2015 by Kurt Duncan
+//
 //  Loads the NodeTable from json-formatted flat file, saves it thereto.
 //  Also notes disk mounts where appropriate, and saves those as well.
 

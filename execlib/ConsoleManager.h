@@ -1,4 +1,5 @@
 //	ConsoleManager.h
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //	Console manager - interface between console sources and console destinations.
 //  Sources include:

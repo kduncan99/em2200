@@ -1,4 +1,5 @@
 //  Processor.h
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //  Base class for all processors.
 //  Anything common to all processors goes here.  Not that there is anything like that at the moment...

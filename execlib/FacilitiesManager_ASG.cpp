@@ -1,4 +1,6 @@
 //  Facilities class implementation
+//  Copyright (c) 2015 by Kurt Duncan
+//
 //  Subfunctions for @ASG
 
 
@@ -1924,7 +1926,7 @@ FacilitiesManager::asgExistingNewTapeCheck
             }
 
             //  Any illegal subfields specified?
-            if ( ((additionalFields[0].size() >= 5) && (additionalFields[0][4].size() > 0)) 
+            if ( ((additionalFields[0].size() >= 5) && (additionalFields[0][4].size() > 0))
                 || ((additionalFields[0].size() >= 6) && (additionalFields[0][5].size() > 0))
                 || (additionalFields[0].size() > 7) )
             {
@@ -2758,7 +2760,7 @@ FacilitiesManager::asgUnspecified
 
 //  asgCheckForDLOC$()
 //
-//  Did we just assign SYS$*DLOC$ successfully?  If so, set privileged mode. 
+//  Did we just assign SYS$*DLOC$ successfully?  If so, set privileged mode.
 void
 FacilitiesManager::asgCheckForDLOC$
 (

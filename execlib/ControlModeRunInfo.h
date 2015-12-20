@@ -1,4 +1,5 @@
 //  ControlModeRunInfo class declaration
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //  RunInfo generics for runs that can have control mode (i.e., batch and demand)
 

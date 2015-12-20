@@ -1,7 +1,8 @@
 //  Configuration
+//  Copyright (c) 2015 by Kurt Duncan
 //
-//  Loaded by emexec, and passed to Exec upon instantiation.
-//  It is conceivable that the owner (emexec) can update this while it is held by Exec;
+//  Loaded by emssp, and passed to Exec upon instantiation.
+//  It is conceivable that the owner can update this while it is held by Exec;
 //  This means that Exec must protect itself from damage which could be caused by such
 //  antics.  For example, there are some values (e.g., DCLUTS) which should *NOT* change
 //  while Exec is running (said change requires an MFD initialization)...  Thus, Exec

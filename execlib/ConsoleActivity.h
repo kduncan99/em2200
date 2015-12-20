@@ -1,4 +1,5 @@
 //	ConsoleActivity.h
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //	Manages almost all IO for the exec
 

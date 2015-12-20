@@ -1,4 +1,5 @@
 //  FileSpecification.cpp
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //  Some simple sauce for the FileSpecification class
 

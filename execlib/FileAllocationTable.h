@@ -1,4 +1,5 @@
 //  Header file for file allocation table
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //  This class encapsulates information derived from DAD tables for configured disk files,
 //  and provides in-core address translation for cataloged and temporary disk files.

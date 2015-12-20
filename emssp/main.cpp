@@ -1,4 +1,5 @@
 //  SSP command line utility for emulated exec
+//  Copyright (c) 2015 by Kurt Duncan
 
 //???? All output should go through sendCallMessage() (which should probably be renamed)
 //      Anything at depth 0 should not emit a prefix

@@ -1,4 +1,5 @@
 //  JSONObjectValue.h
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //  Models a JSON Object - that is, a record of key-value data; also described as a dictionary.
 

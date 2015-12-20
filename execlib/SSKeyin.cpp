@@ -1,4 +1,5 @@
 //	SSKeyin.cpp
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //	Handles the SS keyin
 

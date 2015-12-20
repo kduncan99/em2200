@@ -1,3 +1,6 @@
+//  PersistableNodeTable.h
+//  Copyright (c) 2015 by Kurt Duncan
+//
 //  Extends NodeTable to add persistence
 //  as well as introducing the idea of configuration by subsystem.
 

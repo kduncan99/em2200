@@ -1,4 +1,5 @@
 //  SimpleFile header file
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //  Abstracts the lower-level file operations for the supported platforms.
 //  We do this instead of using c++ file operations so we can get better information about failures

@@ -1,4 +1,5 @@
 //  DemandRunInfo class declaration
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //  Some stuff specific to DEMAND mode
 

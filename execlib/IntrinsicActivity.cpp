@@ -1,4 +1,5 @@
 //	IntrinsicActivity.cpp
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //  Implements a state-machine-driven engine, for derived classes to use.
 

@@ -1,4 +1,5 @@
 //	Worker.h
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //	Base class for anything that wants to have a basic worker thread
 

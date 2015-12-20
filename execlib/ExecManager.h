@@ -1,4 +1,5 @@
 //	ExecManager class declaration
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //  ExecManager is any particular singleton entity which manages a subset of the Exec's
 //  responsibilities.  Such entities may require boot-time initialization, and

@@ -1,4 +1,5 @@
 //  Implementation of a PanelInterface for the SSP
+//  Copyright (c) 2015 by Kurt Duncan
 
 
 

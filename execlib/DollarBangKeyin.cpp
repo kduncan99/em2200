@@ -1,4 +1,5 @@
 //  DollarBangKeyin.cpp
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //  Displays system date and time on the requesting console.
 

@@ -1,4 +1,5 @@
 //  JSONStringEscapeException.h
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //  Parser expects to find more data, and is at the end of the input text
 

@@ -1,4 +1,5 @@
 //  SuperString
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //  std::string superclass which does one or two additionally-helpful things
 

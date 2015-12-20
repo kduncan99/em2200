@@ -1,4 +1,5 @@
 //  MasterConfigurationTable.h
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //  An Exec view of the hardware.
 //  Wraps hardware Node entities in NodeEntry objects, which have exec status attributes, and which maintains

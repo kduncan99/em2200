@@ -1,4 +1,5 @@
 //  ControlStatementActivity
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //  Manages the execution of a control statement for a particular batch or demand run.
 

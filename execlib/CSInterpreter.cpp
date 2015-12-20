@@ -1,4 +1,5 @@
 //  CSInterpreter implementation
+//  Copyright (c) 2015 by Kurt Duncan
 
 //  Non control-mode legal use - We do not enforce this - caller must do so
 //  Command     CSF Non-TIP     CSF TIP         CSI

@@ -1,4 +1,5 @@
 //  IOProcessor implementation
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //  Not much here -- IOP's don't do  much, the CMod's do it all.
 

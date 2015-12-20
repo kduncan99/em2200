@@ -1,4 +1,5 @@
 //  Node.h
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //  Most basic class for all virtual hardware
 

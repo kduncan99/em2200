@@ -1,4 +1,5 @@
 //	BootActivity.cpp
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //	This is the code which runs at boot time, and starts up all the EXEC stuff.
 //

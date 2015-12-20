@@ -1,4 +1,5 @@
 //  Emitter.h
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //  Interface and code for abstract class defining behavior for any object
 //  which wishes to emit events to listeners.

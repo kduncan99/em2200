@@ -1,4 +1,5 @@
 //  JumpKeyKeyin.h
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //  Intermediate base class for all jump-key keyins
 

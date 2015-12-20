@@ -1,4 +1,5 @@
 //	SecurityManager.cpp
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //	Implementation of SecurityManager class
 //  Manages all security for emexec

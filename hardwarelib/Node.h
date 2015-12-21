@@ -14,9 +14,8 @@ class   Node
 {
 public:
     typedef     UINT32                                  NODE_ADDRESS;
-    typedef     std::map<NODE_ADDRESS, Node*>           CHILDNODES;
-    typedef     CHILDNODES::iterator                    ITCHILDNODES;
-    typedef     CHILDNODES::const_iterator              CITCHILDNODES;
+    typedef     std::set<Node*>                         ANCESTORS;
+    typedef     std::map<NODE_ADDRESS, Node*>           DESCENDANTS;
 
     enum class Category
     {
@@ -33,7 +32,8 @@ private:
 
 
 protected:
-    CHILDNODES                  m_ChildNodes;
+    ANCESTORS                   m_Ancestors;
+    DESCENDANTS                 m_Descendants;
 
     //  Convenience wrapper for derived objects which need to write to the system log.
     //  Automatically prepends node category and name to the message.
@@ -59,19 +59,6 @@ public:
     //  Invoked when the config is built, and before we allow anyone into it.
     virtual void                initialize(){}
 
-    //  Removes a child node from this node, but does NOT delete it
-    inline void deregisterChildNode( const NODE_ADDRESS childAddress )
-    {
-        m_ChildNodes.erase( childAddress );
-    }
-
-    //  Attaches a child node to this node, at a particular address
-    inline void registerChildNode( const NODE_ADDRESS  childAddress,
-                                   Node* const         pNode )
-    {
-        m_ChildNodes[childAddress] = pNode;
-    }
-
     //  This gets invoked anytime an async IO (which this object invoked) completes.
     //  At this level, nothing is done.  Derived classes may overload this and do something.
     virtual void                signal( Node* const pSource ){}
@@ -80,12 +67,20 @@ public:
     virtual void                terminate(){}
 
     //  inline getters
+    inline const ANCESTORS&     getAncestors() const        { return m_Ancestors; }
     inline Category             getCategory() const         { return m_Category; }
     inline const char*          getCategoryString() const   { return getCategoryString( m_Category ); }
-    inline const CHILDNODES&    getChildNodes() const       { return m_ChildNodes; }
+    inline const DESCENDANTS&   getDescendants() const      { return m_Descendants; }
     inline const SuperString&   getName() const             { return m_Name; }
 
     //  statics
+    static bool                 connect( Node* const    pAncestor,
+                                         Node* const    pDescendant );
+    static bool                 connect( Node* const        pAncestor,
+                                         const NODE_ADDRESS ancestorAddress,
+                                         Node* const        pDescendant );
+    static bool                 disconnect( Node* const pAncestor,
+                                            Node* const pDescendant );
     static const char*          getCategoryString( const Category category );
 };
 

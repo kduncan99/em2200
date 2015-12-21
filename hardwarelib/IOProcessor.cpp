@@ -31,8 +31,8 @@ IOProcessor::cancelIo
     const ChannelModule::ChannelProgram* const  pChannelProgram
 )
 {
-    ITCHILDNODES itn = m_ChildNodes.find( pChannelProgram->m_ChannelModuleAddress );
-    if ( itn == m_ChildNodes.end() )
+    auto itn = m_Descendants.find( pChannelProgram->m_ChannelModuleAddress );
+    if ( itn == m_Descendants.end() )
         return false;
 
     ChannelModule* pcm = dynamic_cast<ChannelModule*>( itn->second );
@@ -60,8 +60,8 @@ IOProcessor::routeIo
     ChannelModule::ChannelProgram* const    pChannelProgram
 )
 {
-    ITCHILDNODES itn = m_ChildNodes.find( pChannelProgram->m_ChannelModuleAddress );
-    if ( itn == m_ChildNodes.end() )
+    auto itn = m_Descendants.find( pChannelProgram->m_ChannelModuleAddress );
+    if ( itn == m_Descendants.end() )
     {
         pChannelProgram->m_ChannelStatus = ChannelModule::Status::INVALID_CHANNEL_MODULE_ADDRESS;
         if ( pChannelProgram->m_pSource )

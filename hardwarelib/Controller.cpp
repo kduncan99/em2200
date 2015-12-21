@@ -29,8 +29,8 @@ Controller::routeIo
     Device::IoInfo* const       pIoInfo
 )
 {
-    ITCHILDNODES itd = m_ChildNodes.find(address);
-    if ( itd == m_ChildNodes.end() )
+    auto itd = m_Descendants.find(address);
+    if ( itd == m_Descendants.end() )
     {
         pIoInfo->setStatus( Device::IoStatus::INVALID_DEVICE_ADDRESS );
         pIoInfo->getSource()->signal( this );

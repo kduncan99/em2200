@@ -22,7 +22,7 @@ public:
     enum class Result
     {
         Success,
-        AlreadyConnected,
+        CannotConnect,
         ChannelModuleStillConnected,
         FileCloseFailed,
         FileIoFailed,
@@ -63,6 +63,7 @@ private:
     Result              deserializeMounts( const JSONArrayValue* const pArray );
     Result              deserializeSubSystem( const JSONObjectValue* const pObject );
     Result              deserializeSubSystems( const JSONArrayValue* const pArray );
+    void                disconnectSubSystemInt( SubSystem* const pSubSystem );
     bool                isNodeNameUnique( const SuperString& name ) const;
     JSONObjectValue*    serializeDevice( const Device* const pDevice ) const;
     JSONObjectValue*    serializeIoProcessor( const IOProcessor* const pIoProcessor ) const;

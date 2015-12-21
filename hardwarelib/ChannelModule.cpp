@@ -314,7 +314,7 @@ ChannelModule::startChildIOs()
                                                   itt->m_pConversionBuffer->m_pBuffer,
                                                   static_cast<BLOCK_ID>(itt->m_pChannelProgram->m_Address),
                                                   itt->m_TransferSizeBytes );
-            Controller* pController = dynamic_cast<Controller*>( m_ChildNodes[itt->m_pChannelProgram->m_ControllerAddress] );
+            Controller* pController = dynamic_cast<Controller*>( m_Descendants[itt->m_pChannelProgram->m_ControllerAddress] );
             pController->routeIo(itt->m_pChannelProgram->m_DeviceAddress, itt->m_pChildIo);
             ++itt;
         }
@@ -788,8 +788,8 @@ ChannelModule::handleIo
 )
 {
     //  Check to ensure the controller address is correct
-    ITCHILDNODES itnCtl = m_ChildNodes.find( pChannelProgram->m_ControllerAddress );
-    if ( itnCtl == m_ChildNodes.end() )
+    auto itnCtl = m_Descendants.find( pChannelProgram->m_ControllerAddress );
+    if ( itnCtl == m_Descendants.end() )
     {
         pChannelProgram->m_ChannelStatus = Status::INVALID_CONTROLLER_ADDRESS;
         if (pChannelProgram->m_pSource)

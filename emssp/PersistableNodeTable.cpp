@@ -123,15 +123,8 @@ PersistableNodeTable::createDeviceInt
     //  Connect the device to the controller(s) in the subsystem
     for ( auto itctl = controllers.begin(); itctl != controllers.end(); ++itctl )
     {
-        Controller* pctl = *itctl;
-        const Node::CHILDNODES& ctlChildNodes = pctl->getChildNodes();
-
-        //  Choose an unused node address
-        Node::NODE_ADDRESS addr = 0;
-        while ( ctlChildNodes.find( addr ) != ctlChildNodes.end() )
-            ++addr;
-
-        pctl->registerChildNode( addr, pDevice );
+        if ( !Node::connect( *itctl, pDevice ) )
+            return Result::CannotConnect;
     }
 
     //  Finish up
@@ -159,7 +152,7 @@ PersistableNodeTable::createIoProcessorInt
     for ( INDEX cmx = 0; cmx < channelModuleNames.size(); ++cmx )
     {
         ChannelModule* pcm = new ChannelModule( channelModuleNames[cmx] );
-        piop->registerChildNode( cmx, pcm );
+        Node::connect( piop, cmx, pcm );
         pcm->startUp();
         m_NodeSet.insert( pcm );
     }
@@ -558,6 +551,35 @@ PersistableNodeTable::deserializeSubSystems
 }
 
 
+//  disconnectSubSystemInt()
+//
+//  Detaches all controllers in the subsystem from the various channel modules to which they are attached.
+//
+//  Parameters:
+//      pSubSystemName:     Pointer to subsystem
+//
+//  Returns:
+//      Result enum indicating success or the reason for failure
+void
+PersistableNodeTable::disconnectSubSystemInt
+(
+    SubSystem* const        pSubSystem
+)
+{
+    std::list<Controller*> controllers = pSubSystem->getControllers();
+    for ( auto itctl = controllers.begin(); itctl != controllers.end(); ++itctl )
+    {
+        Controller* pctl = *itctl;
+        const Node::ANCESTORS& chmods = pctl->getAncestors();
+        while ( !chmods.empty() )
+        {
+            Node* pcm = *(chmods.begin());
+            Node::disconnect( pcm, pctl );
+        }
+    }
+}
+
+
 //  isNodeNameUnique()
 //
 //  Checks a proposed node name for uniqueness
@@ -626,7 +648,7 @@ PersistableNodeTable::serializeIoProcessor
 ) const
 {
     //  Need a JSON array to hold all the channel module names
-    const Node::CHILDNODES& cmNodes = pIoProcessor->getChildNodes();
+    const Node::DESCENDANTS& cmNodes = pIoProcessor->getDescendants();
     JSONArrayValue* pCMNames = new JSONArrayValue();
     for ( auto itcm = cmNodes.begin(); itcm != cmNodes.end(); ++itcm )
     {
@@ -719,17 +741,21 @@ PersistableNodeTable::serializeSubSystem
 {
     //  Serialize controller names
     JSONArrayValue* pCtlNames = new JSONArrayValue();
-    for ( auto itctl = pSubSystem->getControllers().begin(); itctl != pSubSystem->getControllers().end(); ++itctl )
+    const std::list<Controller*> controllers = pSubSystem->getControllers();
+    for ( auto itctl = controllers.begin(); itctl != controllers.end(); ++itctl )
         pCtlNames->append( new JSONStringValue( (*itctl)->getName() ) );
 
-    //  Serialize channel module names
+    //  Serialize channel module names if we are connected.
+    //  We only look at one controller; if there are two, connections should be identical.
     JSONArrayValue* pCmNames = new JSONArrayValue();
-    for ( auto itcm = pSubSystem->getChannelModules().begin(); itcm != pSubSystem->getChannelModules().end(); ++itcm )
+    Node::ANCESTORS chmods = pSubSystem->getControllers().front()->getAncestors();
+    for ( auto itcm = chmods.begin(); itcm != chmods.end(); ++itcm )
         pCmNames->append( new JSONStringValue( (*itcm)->getName() ) );
 
     //  Serialize devices
     JSONArrayValue* pDevices = new JSONArrayValue();
-    for ( auto itdev = pSubSystem->getDevices().begin(); itdev != pSubSystem->getDevices().end(); ++itdev )
+    const std::list<Device*> devices = pSubSystem->getDevices();
+    for ( auto itdev = devices.begin(); itdev != devices.end(); ++itdev )
         pDevices->append( serializeDevice( *itdev ) );
 
     JSONObjectValue* pObject = new JSONObjectValue();
@@ -809,60 +835,32 @@ PersistableNodeTable::connectSubSystem
     }
 
     SubSystem* pss = itss->second;
-    if ( pss->getChannelModules().size() > 0 )
-    {
-        unlock();
-        return Result::AlreadyConnected;
-    }
 
     //  Find channel modules
     std::set<ChannelModule*> channelModules;
     for ( auto itName = channelModuleNames.begin(); itName != channelModuleNames.end(); ++itName )
     {
-        bool found = false;
-        auto itiop = m_IoProcessors.begin();
-        while ( !found && (itiop != m_IoProcessors.end()) )
-        {
-            IOProcessor* piop = itiop->second;
-            const Node::CHILDNODES& chmods = piop->getChildNodes();
-            auto itIopChm = chmods.begin();
-            while ( !found && (itIopChm != chmods.end()) )
-            {
-                ChannelModule* pIopChm = reinterpret_cast<ChannelModule*>( itIopChm->second );
-                if ( pIopChm->getName().compareNoCase( *itName ) == 0 )
-                {
-                    channelModules.insert( pIopChm );
-                    found = true;
-                }
-
-                ++itIopChm;
-            }
-
-            ++itiop;
-        }
-
-        if ( !found )
+        ChannelModule* pchmod = dynamic_cast<ChannelModule*>(getNode( *itName ));
+        if ( pchmod == 0 )
         {
             unlock();
             return Result::NodeDoesNotExist;
         }
+
+        channelModules.insert( pchmod );
     }
 
-    //  Now finally register all controllers in the subsystem with all chosen channel modules.
-    for ( auto itcm = channelModules.begin(); itcm != channelModules.end(); ++itcm )
+    //  Now register all controllers in the subsystem with all chosen channel modules.
+    std::list<Controller*> controllers = pss->getControllers();
+    for ( auto itctl = controllers.begin(); itctl != controllers.end(); ++itctl )
     {
-        ChannelModule* pchm = *itcm;
-        const Node::CHILDNODES& chmChildNodes = pchm->getChildNodes();
-
-        for ( auto itctl = pss->getControllers().begin(); itctl != pss->getControllers().end(); ++itctl )
+        for ( auto itcm = channelModules.begin(); itcm != channelModules.end(); ++itcm )
         {
-            //  Find an unused address
-            Node::NODE_ADDRESS addr = 0;
-            while ( chmChildNodes.find( addr ) != chmChildNodes.end() )
-                ++addr;
-
-            Controller* pctl = *itctl;
-            pchm->registerChildNode( addr, pctl );
+            if ( !Node::connect( *itcm, *itctl ) )
+            {
+                unlock();
+                return Result::CannotConnect;
+            }
         }
     }
 
@@ -1227,10 +1225,11 @@ PersistableNodeTable::deleteIoProcessor
 
     //  Are any channel modules still connected to any controllers?
     IOProcessor* piop = it->second;
-    for ( auto itcm = piop->getChildNodes().begin(); itcm != piop->getChildNodes().end(); ++itcm )
+    Node::DESCENDANTS chmods = piop->getDescendants();
+    for ( auto itcm = chmods.begin(); itcm != chmods.end(); ++itcm )
     {
         ChannelModule* pcm = dynamic_cast<ChannelModule*>(itcm->second);
-        if ( pcm->getChildNodes().size() > 0 )
+        if ( pcm->getDescendants().size() > 0 )
         {
             unlock();
             return Result::ChannelModuleStillConnected;
@@ -1238,7 +1237,7 @@ PersistableNodeTable::deleteIoProcessor
     }
 
     //  Delete channel modules (no need to deregister them), remove the IOP from our list, then delete it.
-    for ( auto itcm = piop->getChildNodes().begin(); itcm != piop->getChildNodes().end(); ++itcm )
+    for ( auto itcm = chmods.begin(); itcm != chmods.end(); ++itcm )
     {
         ChannelModule* pcm = dynamic_cast<ChannelModule*>(itcm->second);
         m_NodeSet.erase( pcm );
@@ -1283,19 +1282,12 @@ PersistableNodeTable::deleteSubSystem
     SubSystem* pss = it->second;
 
     //  Detach controllers from channel modules
-    if ( pss->getChannelModules().size() > 0 )
-    {
-        Result disconnectResult = disconnectSubSystem( subSystemName );
-        if ( disconnectResult != Result::Success )
-        {
-            unlock();
-            return disconnectResult;
-        }
-    }
+    disconnectSubSystemInt( pss );
 
     //  Delete controllers in the subsystem.
     //  Not necessary to remove them from the subsystem - it's going away pretty quickly.
-    for ( auto itctl = pss->getControllers().begin(); itctl != pss->getControllers().end(); ++itctl )
+    const std::list<Controller*> controllers = pss->getControllers();
+    for ( auto itctl = controllers.begin(); itctl != controllers.end(); ++itctl )
     {
         Controller* pctl = *itctl;
         m_NodeSet.erase( pctl );
@@ -1346,28 +1338,7 @@ PersistableNodeTable::disconnectSubSystem
     }
 
     SubSystem* pss = itss->second;
-
-    for ( auto itcm = pss->getChannelModules().begin(); itcm != pss->getChannelModules().end(); ++itcm )
-    {
-        ChannelModule* pcm = *itcm;
-        std::set<Node::NODE_ADDRESS> addresses; //  addresses to delete from this CM
-
-        for ( auto itctl1 = pcm->getChildNodes().begin(); itctl1 != pcm->getChildNodes().end(); ++itctl1 )
-        {
-            Controller* pChModCtrl = dynamic_cast<Controller*>( itctl1->second );
-            for ( auto itctl2 = pss->getControllers().begin(); itctl2 != pss->getControllers().end(); ++itctl2 )
-            {
-                Controller* pSubSysCtrl = *itctl2;
-                if ( pChModCtrl == pSubSysCtrl )
-                    addresses.insert( itctl1->first );
-            }
-        }
-
-        for (auto itaddr = addresses.begin(); itaddr != addresses.end(); ++itaddr )
-            pcm->deregisterChildNode( *itaddr );
-    }
-
-    pss->clearChannelModules();
+    disconnectSubSystemInt( pss );
 
     m_IsUpdated = true;
     unlock();
@@ -1533,7 +1504,7 @@ PersistableNodeTable::getResultString
 {
     switch ( result )
     {
-    case Result::AlreadyConnected:              return "The subsystem is already connected";
+    case Result::CannotConnect:                 return "The subsystem cannot be connected";
     case Result::ChannelModuleStillConnected:   return "At least one channel module is still connected to a controller";
     case Result::FileCloseFailed:               return "File close failed";
     case Result::FileIoFailed:                  return "File IO failed";

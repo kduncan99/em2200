@@ -888,7 +888,7 @@ nodeIopHandler
 
                     std::stringstream strm;
                     strm << "IOProcessor " << piop->getName() << " contains:";
-                    const Node::CHILDNODES& chmods = piop->getChildNodes();
+                    const Node::DESCENDANTS& chmods = piop->getDescendants();
                     if ( chmods.size() == 0 )
                         strm << " <none>";
                     for ( auto itcm = chmods.begin(); itcm != chmods.end(); ++itcm )
@@ -911,7 +911,7 @@ nodeIopHandler
                 else
                 {
                     sendOutput( " IOP " + piop->getName() + " contains:" );
-                    const Node::CHILDNODES& chmods = piop->getChildNodes();
+                    const Node::DESCENDANTS& chmods = piop->getDescendants();
                     for ( auto itcm = chmods.begin(); itcm != chmods.end(); ++itcm )
                     {
                         std::stringstream strm;
@@ -945,8 +945,27 @@ nodeSubSystemHandler
         if ( itparm->compareNoCase( "ATTACH" ) == 0 )
         {
             //  /NODE SUBSYSTEM ATTACH {subsystem_name} {chmod_name} [ {chmod_name} ]
-            sendOutput( "Not yet implemented" );
-            return false;//????
+            ++itparm;
+            if ( (parameters.size() >= 3) && (parameters.size() <= 4) )
+            {
+                SuperString subName = *(itparm++);
+                std::vector<SuperString> chmodNames;
+                chmodNames.push_back(*(itparm++));
+                if ( parameters.size() == 4 )
+                    chmodNames.push_back(*(itparm++));
+
+                PersistableNodeTable::Result result = pNodeTable->connectSubSystem( subName, chmodNames );
+                if ( result != PersistableNodeTable::Result::Success )
+                {
+                    std::stringstream strm;
+                    strm << "Error:" << PersistableNodeTable::getResultString( result );
+                    sendOutput( strm.str() );
+                    return false;
+                }
+
+                sendOutput( "SubSystem attached" );
+                return true;
+            }
         }
         else if ( itparm->compareNoCase( "CREATE" ) == 0 )
         {
@@ -1023,8 +1042,21 @@ nodeSubSystemHandler
         else if ( itparm->compareNoCase( "DETACH" ) == 0 )
         {
             //  /NODE SUBSYSTEM DETACH {subsystem_name}
-            sendOutput( "Not yet implemented" );
-            return false;//????
+            ++itparm;
+            if ( parameters.size() == 2 )
+            {
+                PersistableNodeTable::Result result = pNodeTable->disconnectSubSystem( *itparm );
+                if ( result != PersistableNodeTable::Result::Success )
+                {
+                    std::stringstream strm;
+                    strm << "Error:" << PersistableNodeTable::getResultString( result );
+                    sendOutput( strm.str() );
+                    return false;
+                }
+
+                sendOutput( "SubSystem detached" );
+                return true;
+            }
         }
         else if ( itparm->compareNoCase( "LIST" ) == 0 )
         {
@@ -1059,7 +1091,6 @@ nodeSubSystemHandler
                     return false;
                 }
 
-                const std::list<ChannelModule*>& channelModules = psub->getChannelModules();
                 const std::list<Controller*>& controllers = psub->getControllers();
                 const std::list<Device*>& devices = psub->getDevices();
 
@@ -1070,6 +1101,7 @@ nodeSubSystemHandler
 
                 strm.str("");
                 strm << "  Attached to: ";
+                const Node::ANCESTORS& channelModules = controllers.front()->getAncestors();
                 for ( auto itcm = channelModules.begin(); itcm != channelModules.end(); ++itcm )
                     strm << " " << (*itcm)->getName();
                 sendOutput( strm.str() );

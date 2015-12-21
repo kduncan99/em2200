@@ -1425,6 +1425,12 @@ main
 
     pConfiguration = new Configuration();
 
+    //  Set up RPC listener
+    std::string s = "NetServer";
+    short p = 8000;
+    NetServer* ns = new NetServer(s, p);
+    ns->workerStart();
+
     //  Command loop
     char inputBuffer[132];
     while ( !TermFlag )
@@ -1459,6 +1465,8 @@ main
 
     //  Termination
     //???? lose all Node entries...
+
+    delete ns;//????
 
     pLog->close();
     delete pLog;

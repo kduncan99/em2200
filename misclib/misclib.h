@@ -25,10 +25,12 @@
 #include    <WS2tcpip.h>
 #include    <Windows.h>
 #else
+#include    <arpa/inet.h>
 #include    <fcntl.h>
 #include    <netdb.h>
 #include    <pthread.h>
 #include    <string.h>
+#include    <sys/poll.h>
 #include    <sys/socket.h>
 #include    <sys/stat.h>
 #include    <sys/sysinfo.h>
@@ -393,13 +395,15 @@ inline INT64    miscTwosComplement36( const UINT64 operand )    { return miscIsN
 
 
 
-#include    "DataHandler.h"
+#include    "DataHandler.h"         //???? is this obsolete?
 #include    "Emitter.h"
 #include    "Event.h"
-#include    "GeneralRegister.h"
-#include    "InstructionWord.h"
+#include    "GeneralRegister.h"     //???? should this be in hardwarelib?
+#include    "HttpServer.h"
+#include    "InstructionWord.h"     //????  should this be in hardwarelib?
 #include    "Listener.h"
 #include    "Lockable.h"
+#include    "NetServer.h"
 #include    "SimpleFile.h"
 #include    "SuperString.h"
 #include    "SystemLog.h"

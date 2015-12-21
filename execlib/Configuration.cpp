@@ -1,4 +1,5 @@
 //  Configuration
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //  Stores, manages, and provides look-ups for config tags and hardware configs
 

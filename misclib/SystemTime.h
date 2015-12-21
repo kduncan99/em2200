@@ -1,4 +1,6 @@
 //  SystemTime.h
+//  Copyright (c) 2015 by Kurt Duncan
+//
 //  Represents a timestamp for the host system in component form
 
 

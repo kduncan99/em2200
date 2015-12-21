@@ -1,4 +1,5 @@
 //	SJKeyin.h
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //	SJ keyin handler
 

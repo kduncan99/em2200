@@ -1,4 +1,5 @@
 //  Listener.h
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //  A very generic interface for objects which wish to listen to some other object's noise.
 //  See Emitter class

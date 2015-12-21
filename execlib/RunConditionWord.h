@@ -1,4 +1,5 @@
 //  RunConditionWord.h
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //  Models the RCW in the RunInfo object
 
@@ -31,11 +32,11 @@ Bit 11
 One or more previous activity terminations of the current task, or previous task if
 between executions, was an error termination. Refer to Section 3 for more details
 on error termination.
-Note: Bits 9–11 are cleared with the execution of the next task (@XQT). A call to a
+Note: Bits 9-11 are cleared with the execution of the next task (@XQT). A call to a
 postmortem dump processor such as @PMD is an exception since this call does not
 cause alteration of the condition word.
 
-Bits 9 – 11 and bits 0 – 6 in T1 can be modified only by the Executive. The Executive does not
+Bits 9 - 11 and bits 0 - 6 in T1 can be modified only by the Executive. The Executive does not
 change bits 7 and 8. T2 can be modified only by a control statement. T3 can be
 modified only by an ER. Bits 7 and 8 can be modified by a control statement or an ER,
 but not by the Executive. These two bits are maintained by the tasks that set them.

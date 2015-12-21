@@ -1,4 +1,5 @@
 //  InstructionWord implementation
+//  Copyright (c) 2015 by Kurt Duncan
 
 
 
@@ -179,7 +180,7 @@ const InstructionWord::ERNameEntry InstructionWord::m_ERNameTable[] =
     {02051, "DM$IO"},
     {02052, "DM$IOW"},
     {02053, "DM$WT"},
-    {02054, "BT$DIS"},	
+    {02054, "BT$DIS"},
     {02055, "BT$ENA"},
     {02056, "FLAGBOX"},
     {02060, "RT$PSI"},
@@ -825,7 +826,7 @@ InstructionWord::InstructionWord
     const UINT8 x,
     const bool h,
     const bool i,
-    const UINT16 u 
+    const UINT16 u
     )
 {
     UINT64 value = static_cast<UINT64>(f & 077) << 30;
@@ -850,7 +851,7 @@ InstructionWord::InstructionWord
     const bool h,
     const bool i,
     const UINT8 b,
-    const UINT16 d 
+    const UINT16 d
     )
 {
     UINT64 value = static_cast<UINT64>(f & 077) << 30;
@@ -873,7 +874,7 @@ InstructionWord::InstructionWord
     const UINT8 j,
     const UINT8 a,
     const UINT8 x,
-    const UINT32 u 
+    const UINT32 u
     )
 {
     UINT64 value = static_cast<UINT64>(f & 077) << 30;

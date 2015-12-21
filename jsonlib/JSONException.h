@@ -1,4 +1,5 @@
 //  JSONException.h
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //  Header file for abstract base class from which all other JSON exception classes are derivce
 

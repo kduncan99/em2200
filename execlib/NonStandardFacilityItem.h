@@ -1,4 +1,5 @@
 //  NonStandardFacilityItem.h
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //  Refers to absolute device and arbitrary device assignments.
 //  TODO:TAPE - do we use this for tape devices even if we have a standard item for the tape file?

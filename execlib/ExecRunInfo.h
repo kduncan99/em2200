@@ -1,4 +1,5 @@
 //  ExecRunInfo class declaration
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //  Stuff which pertains only to the Exec
 

@@ -1,4 +1,5 @@
 //  JSONConversionException.h
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //  This is thrown when an attempt to convert from a JSON type to an internal type fails...
 //  e.g., conversion of a string containing "FOO" to a boolean value.

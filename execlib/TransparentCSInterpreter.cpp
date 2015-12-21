@@ -1,4 +1,5 @@
 //  TransparentCSInterpreter implementation
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //  Interprets transparent control statements
 

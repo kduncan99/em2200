@@ -1,4 +1,5 @@
 //  IntrinsicActivity - an activity which is an actual host OS thread, compiled into the library
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //  Implements a basic state machine, which is the easiest way to handle intrinsic activities which
 //  must constantly check for exception conditions so they can shut down or divert as quickly as possible.

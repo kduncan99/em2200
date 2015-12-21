@@ -1,4 +1,5 @@
 //  FileSystemDiskDevice.h
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //  Class for emulating a disk device in a system file
 //

@@ -1,7 +1,5 @@
 //  SSP command line utility for emulated exec
-
-//???? All output should go through sendCallMessage() (which should probably be renamed)
-//      Anything at depth 0 should not emit a prefix
+//  Copyright (c) 2015 by Kurt Duncan
 
 
 
@@ -47,7 +45,7 @@ static bool     getJumpKeys( const std::list<SuperString>&      parameters,
 static void     parameterize( SuperString&                  input,
                               std::list<SuperString>* const pParameters );
 static bool     processCommand( const SuperString&  input );
-static void     sendCallMessage( const std::string& message );
+static void     sendOutput( const std::string& message );
 static void     showJumpKeysSet();
 
 
@@ -168,11 +166,11 @@ static Command MediaCommand( 0,
 
 static Command NodeCommand( 0,
                             "/NODE CONFIG [ LOAD | SAVE ] [ {file_name} ]\n"
+                                    "/NODE CONFIG LIST\n"
                                     "/NODE DEVICE CREATE {device_name} {device_type} {device_model} {subsystem_name}\n"
-                                    "/NODE DEVICE DELETE {device_name}\n"
-                                    "/NODE DEVICE LIST\n"
                                     "/NODE DEVICE MOUNT {device_name} {media_name}\n"
-                                    "/NODE DEVICE SHOW {device_name}\n"
+                                    "/NODE DEVICE [ DELETE | SHOW | UNMOUNT ] {device_name}\n"
+                                    "/NODE DEVICE LIST\n"
                                     "/NODE IOP [ CREATE | LIST ]\n"
                                     "/NODE IOP [ DELETE | SHOW ] {iop_name}\n"
                                     "/NODE SUBSYSTEM CREATE {subsystem_name} [ DISK | TAPE | SYMBIONT ] [ REDUNDANT ]\n"
@@ -246,12 +244,12 @@ callHandler
         fileStream.open( fileName, std::ios_base::in );
         if ( fileStream.fail() )
         {
-            std::cout << "Error:Cannot open file '" << fileName << "'" << std::endl;
+            sendOutput( "Error:Cannot open file '" + fileName + "'" );
             return false;
         }
 
         ++CallDepth;
-        sendCallMessage( "Executing '" + fileName + "'..." );
+        sendOutput( "Executing '" + fileName + "'..." );
 
         bool failFlag = false;
         while ( !fileStream.eof() )
@@ -262,7 +260,7 @@ callHandler
                 break;
             if ( fileStream.fail() )
             {
-                sendCallMessage( "Error reading from file" );
+                sendOutput( "Error reading from file" );
                 failFlag = true;
                 break;
             }
@@ -279,7 +277,7 @@ callHandler
                 //  Does the input begin with a slash character?  If so, it's a command
                 if ( inputText[0] == '/' )
                 {
-                    sendCallMessage( ">" + inputText );
+                    sendOutput( ">" + inputText );
                     if ( !processCommand( inputText ) )
                     {
                         failFlag = true;
@@ -296,7 +294,7 @@ callHandler
                 else
                 {
                     //  Not a command, it is something... strange
-                    sendCallMessage( "Invalid text in script:'" + inputText + "'" );
+                    sendOutput( "Invalid text in script:'" + inputText + "'" );
                     failFlag = true;
                     break;
                 }
@@ -304,9 +302,9 @@ callHandler
         }
 
         if ( failFlag )
-            sendCallMessage( "Aborted" );
+            sendOutput( "Aborted" );
         else
-            sendCallMessage( "End of file '" + fileName + "'" );
+            sendOutput( "End of file '" + fileName + "'" );
 
         --CallDepth;
         fileStream.close();
@@ -314,7 +312,7 @@ callHandler
         return !failFlag;
     }
 
-    std::cout << SyntaxErrorMsg << std::endl;
+    sendOutput( SyntaxErrorMsg );
     return false;
 }
 
@@ -330,7 +328,7 @@ execBootHandler
 {
     if ( parameters.size() > 0 )
     {
-        std::cout << SyntaxErrorMsg << std::endl;
+        sendOutput( SyntaxErrorMsg );
         return false;
     }
 
@@ -352,7 +350,7 @@ execConfigHandler
 //  "/EXEC CONFIG SET {tag} {value}\n"
 //  "/EXEC CONFIG SHOW {tag}\n"
 //  "/EXEC CONFIG [ LOAD | SAVE ] [ file_name ]\n",
-    std::cout << "Not yet implemented" << std::endl;
+    sendOutput( "Not yet implemented" );
     return false;//????
 }
 
@@ -368,7 +366,7 @@ execDumpHandler
 {
     if ( parameters.size() > 0 )
     {
-        std::cout << SyntaxErrorMsg << std::endl;
+        sendOutput( SyntaxErrorMsg );
         return false;
     }
 
@@ -387,7 +385,7 @@ execHaltHandler
 {
     if ( parameters.size() > 0 )
     {
-        std::cout << SyntaxErrorMsg << std::endl;
+        sendOutput( SyntaxErrorMsg );
         return false;
     }
 
@@ -406,7 +404,7 @@ execLoadHandler
 {
     if ( parameters.size() > 0 )
     {
-        std::cout << SyntaxErrorMsg << std::endl;
+        sendOutput( SyntaxErrorMsg );
         return false;
     }
 
@@ -425,7 +423,7 @@ execReloadHandler
 {
     if ( parameters.size() > 0 )
     {
-        std::cout << SyntaxErrorMsg << std::endl;
+        sendOutput( SyntaxErrorMsg );
         return false;
     }
 
@@ -444,15 +442,18 @@ execStatusHandler
 {
     if ( parameters.size() > 0 )
     {
-        std::cout << SyntaxErrorMsg << std::endl;
+        sendOutput( SyntaxErrorMsg );
         return false;
     }
 
-    std::cout << "Status:" << Panel.getStatusMessage() << std::endl;
-    std::cout << "Stop:  "
+    sendOutput( "Status:" + Panel.getStatusMessage() );
+    std::stringstream strm2;
+    strm2 << "Stop:  "
             << std::oct << std::setw( 3 ) << std::setfill( '0' )
             << static_cast<unsigned int>(Panel.getStopCode())
             << ":" << Panel.getStopCodeMessage() << std::endl;
+    sendOutput( strm2.str() );
+
     return true;
 }
 
@@ -468,7 +469,7 @@ execUnloadHandler
 {
     if ( parameters.size() > 0 )
     {
-        std::cout << SyntaxErrorMsg << std::endl;
+        sendOutput( SyntaxErrorMsg );
         return false;
     }
 
@@ -489,7 +490,7 @@ helpHandler
     {
     case 0:
         for ( auto it : Commands )
-            std::cout << it.second->m_SyntaxText;
+            sendOutput( it.second->m_SyntaxText );
         return true;
 
     case 1:
@@ -501,18 +502,18 @@ helpHandler
         auto it = Commands.find( cmdRef );
         if ( it == Commands.end() )
         {
-            std::cout << "Error:Command '/" << cmdRef << "' not recognized" << std::endl;
+            sendOutput( "Error:Command '/" + cmdRef + "' not recognized" );
             return false;
         }
 
-        std::cout << it->second->m_SyntaxText;
-        std::cout << std::endl;
-        std::cout << it->second->m_HelpText;
+        sendOutput( it->second->m_SyntaxText );
+        sendOutput( it->second->m_HelpText );
+
         return true;
     }
 
     default:
-        std::cout << SyntaxErrorMsg << std::endl;
+        sendOutput( SyntaxErrorMsg );
         return false;
     }
 }
@@ -531,7 +532,7 @@ jumpClearHandler
     std::set<PanelInterface::JUMPKEY> jumpKeys;
     if ( !getJumpKeys( parameters, &jumpKeys ) )
     {
-        std::cout << SyntaxErrorMsg << std::endl;
+        sendOutput( SyntaxErrorMsg );
         return false;
     }
 
@@ -558,7 +559,7 @@ jumpSetHandler
     std::set<PanelInterface::JUMPKEY> jumpKeys;
     if ( !getJumpKeys( parameters, &jumpKeys ) )
     {
-        std::cout << SyntaxErrorMsg << std::endl;
+        sendOutput( SyntaxErrorMsg );
         return false;
     }
 
@@ -583,7 +584,7 @@ jumpShowHandler
 {
     if ( parameters.size() > 0 )
     {
-        std::cout << SyntaxErrorMsg << std::endl;
+        sendOutput( SyntaxErrorMsg );
         return false;
     }
 
@@ -607,6 +608,7 @@ mediaCreateHandler
     {
         if ( (*it).compareNoCase( "PACK" ) == 0 )
         {
+            //  /MEDIA CREATE PACK pack_name block_size block_count
             ++it;
             SuperString packName;
             BLOCK_SIZE blockSize = 0;
@@ -637,13 +639,13 @@ mediaCreateHandler
 
             if ( packName.empty() || ( blockCount == 0 ) || ( blockSize == 0 ) )
             {
-                std::cout << SyntaxErrorMsg << std::endl;
+                sendOutput( SyntaxErrorMsg );
                 return false;
             }
 
             if ( !miscIsValidPackName( packName ) )
             {
-                std::cout << "Error:Invalid pack name" << std::endl;
+                sendOutput( "Error:Invalid pack name" );
                 return false;
             }
 
@@ -651,22 +653,23 @@ mediaCreateHandler
             std::string errorMsg;
             if ( !FileSystemDiskDevice::createPack( fileName, blockSize, blockCount, &errorMsg ) )
             {
-                std::cout << "Error:" << errorMsg << std::endl;
+                sendOutput( "Error:" + errorMsg );
                 return false;
             }
 
-            std::cout << "Pack " << packName << " created in file " << fileName << std::endl;
+            sendOutput( "Pack " + packName + " created in file " + fileName );
             return true;
         }
         else if ( (*it).compareNoCase( "VOLUME" ) == 0 )
         {
+            //  /MEDIA CREATE VOLUME volume_name
             //TODO:TAPE
-            std::cout << "Not yet implemented" << std::endl;
+            sendOutput( "Not yet implemented" );
             return false;
         }
     }
 
-    std::cout << SyntaxErrorMsg << std::endl;
+    sendOutput( SyntaxErrorMsg );
     return false;
 }
 
@@ -693,11 +696,13 @@ nodeConfigHandler
             PersistableNodeTable::Result result = pNodeTable->load( fileName );
             if ( result != PersistableNodeTable::Result::Success )
             {
-                std::cout << "Error:" << PersistableNodeTable::getResultString( result );
+                std::stringstream strm;
+                strm << "Error:" << PersistableNodeTable::getResultString( result );
+                sendOutput( strm.str() );
                 return false;
             }
 
-            std::cout << "Hardware configuration loaded" << std::endl;
+            sendOutput( "Hardware configuration loaded" );
             return true;
         }
         else if ( parameters.front().compareNoCase( "SAVE" ) == 0 )
@@ -705,16 +710,53 @@ nodeConfigHandler
             PersistableNodeTable::Result result = pNodeTable->save( fileName );
             if ( result != PersistableNodeTable::Result::Success )
             {
-                std::cout << "Error:" << PersistableNodeTable::getResultString( result );
+                std::stringstream strm;
+                strm << "Error:" << PersistableNodeTable::getResultString( result );
+                sendOutput( strm.str() );
                 return false;
             }
 
-            std::cout << "Hardware configuration saved" << std::endl;
+            sendOutput( "Hardware configuration saved" );
             return true;
+        }
+        else if ( parameters.front().compareNoCase( "LIST" ) == 0 )
+        {
+            if ( parameters.size() == 1 )
+            {
+                const std::set<Node*>& nodes = pNodeTable->getNodeSet();
+                for ( auto it = nodes.begin(); it != nodes.end(); ++it )
+                {
+                    Node* pNode = *it;
+                    std::stringstream strm;
+                    strm << "  " << pNode->getCategoryString() << ":" << pNode->getName();
+
+                    switch ( pNode->getCategory() )
+                    {
+                    case Node::Category::CHANNEL_MODULE:
+                        break;
+
+                    case Node::Category::CONTROLLER:
+                        strm << " " << reinterpret_cast<Controller*>( pNode )->getControllerTypeString();
+                        break;
+
+                    case Node::Category::DEVICE:
+                        strm << " " << reinterpret_cast<Device*>( pNode )->getDeviceModelString();
+                        break;
+
+                    case Node::Category::PROCESSOR:
+                        strm << " " << reinterpret_cast<Processor*>( pNode )->getProcessorTypeString();
+                        break;
+                    }
+
+                    sendOutput( strm.str() );
+                }
+
+                return true;
+            }
         }
     }
 
-    std::cout << SyntaxErrorMsg << std::endl;
+    sendOutput( SyntaxErrorMsg );
     return false;
 }
 
@@ -728,13 +770,62 @@ nodeDeviceHandler
     const std::list<SuperString>& parameters
 )
 {
-//  "/NODE DEVICE CREATE {device_name} {device_type} {device_model} {subsystem_name}\n"
-//  "/NODE DEVICE DELETE {device_name}\n"
-//  "/NODE DEVICE LIST\n"
-//  "/NODE DEVICE MOUNT {device_name} {media_name}\n"
-//  "/NODE DEVICE SHOW {device_name}\n"
-    std::cout << "Not yet implemented" << std::endl;
-    return false;//????
+    auto itparm = parameters.begin();
+    if ( itparm != parameters.end() )
+    {
+        if ( itparm->compareNoCase( "CREATE" ) == 0 )
+        {
+            //  /NODE DEVICE CREATE {device_name} {device_type} {device_model} {subsystem_name}
+            sendOutput( "Not yet implemented" );
+            return false;//????
+        }
+        else if ( itparm->compareNoCase( "DELETE" ) == 0 )
+        {
+            //  /NODE DEVICE DELETE {device_name}
+            sendOutput( "Not yet implemented" );
+            return false;//????
+        }
+        else if ( itparm->compareNoCase( "LIST" ) == 0 )
+        {
+            //  /NODE DEVICE LIST
+            if ( itparm == parameters.end() )
+            {
+                const std::set<Node*>& nodes = pNodeTable->getNodeSet();
+                for ( auto itnode = nodes.begin(); itnode != nodes.end(); ++itnode )
+                {
+                    Device* pDevice = dynamic_cast<Device*>( *itnode );
+                    if ( pDevice != 0 )
+                    {
+                        std::stringstream strm;
+                        strm << "  " << pDevice->getName() << " " << pDevice->getDeviceModelString();
+                        sendOutput( strm.str() );
+                    }
+                }
+                return true;
+            }
+        }
+        else if ( itparm->compareNoCase( "MOUNT" ) == 0 )
+        {
+            //  /NODE DEVICE MOUNT {device_name} {media_name}
+            sendOutput( "Not yet implemented" );
+            return false;//????
+        }
+        else if ( itparm->compareNoCase( "SHOW" ) == 0 )
+        {
+            //  /NODE DEVICE SHOW {device_name}
+            sendOutput( "Not yet implemented" );
+            return false;//????
+        }
+        else if ( itparm->compareNoCase( "UNMOUNT" ) == 0 )
+        {
+            //  /NODE DEVICE UNMOUNT {device_name}
+            sendOutput( "Not yet implemented" );
+            return false;//????
+        }
+    }
+
+    sendOutput( SyntaxErrorMsg );
+    return false;
 }
 
 
@@ -747,46 +838,94 @@ nodeIopHandler
     const std::list<SuperString>& parameters
 )
 {
-//  "/NODE IOP [ CREATE | LIST ]\n"
-//  "/NODE IOP [ DELETE | SHOW ] {iop_name}\n"
     if ( parameters.size() > 0 )
     {
         if ( parameters.front().compareNoCase( "CREATE" ) == 0 )
         {
-            PersistableNodeTable::Result result = pNodeTable->createIoProcessor();
-            if ( result != PersistableNodeTable::Result::Success )
+            //  /NODE IOP CREATE
+            if ( parameters.size() == 1 )
             {
-                std::cout << "Error:" << PersistableNodeTable::getResultString( result );
-                return false;
-            }
+                PersistableNodeTable::Result result = pNodeTable->createIoProcessor();
+                if ( result != PersistableNodeTable::Result::Success )
+                {
+                    std::stringstream strm;
+                    strm << "Error:" << PersistableNodeTable::getResultString( result );
+                    sendOutput( strm.str() );
+                    return false;
+                }
 
-            std::cout << "IOProcessor created" << std::endl;
-            return true;
+                sendOutput( "IOProcessor created" );
+                return true;
+            }
         }
         else if ( parameters.front().compareNoCase( "DELETE" ) == 0 )
         {
-            return true;//????
+            //  /NODE IOP DELETE {iop_name}
+            if ( parameters.size() == 2 )
+            {
+                PersistableNodeTable::Result result = pNodeTable->deleteIoProcessor( parameters.back() );
+                if ( result != PersistableNodeTable::Result::Success )
+                {
+                    std::stringstream strm;
+                    strm << "Error:" << PersistableNodeTable::getResultString( result );
+                    sendOutput( strm.str() );
+                    return false;
+                }
+
+                sendOutput( "IOProcessor deleted" );
+                return true;
+            }
         }
         else if ( parameters.front().compareNoCase( "LIST" ) == 0 )
         {
-            const PersistableNodeTable::IOPROCESSORS& iops = pNodeTable->getIoProcessors();
-            for ( auto it = iops.begin(); it != iops.end(); ++it )
+            //  /NODE IOP LIST
+            if ( parameters.size() == 1 )
             {
-                const IOProcessor* piop = it->second;
-                std::cout << "IOProcessor " << piop->getName() << " contains the following channel modules:" << std::endl;
-                const Node::CHILDNODES& chmods = piop->getChildNodes();
-                for ( auto itcm = chmods.begin(); itcm != chmods.end(); ++itcm )
-                    std::cout << "  " << itcm->first << ":  " << itcm->second->getName() << std::endl;
+                const PersistableNodeTable::IOPROCESSORS& iops = pNodeTable->getIoProcessors();
+                for ( auto it = iops.begin(); it != iops.end(); ++it )
+                {
+                    const IOProcessor* piop = it->second;
+
+                    std::stringstream strm;
+                    strm << "IOProcessor " << piop->getName() << " contains:";
+                    const Node::DESCENDANTS& chmods = piop->getDescendants();
+                    if ( chmods.size() == 0 )
+                        strm << " <none>";
+                    for ( auto itcm = chmods.begin(); itcm != chmods.end(); ++itcm )
+                        strm << "  [" << itcm->first << "]:" << itcm->second->getName();
+
+                    sendOutput( strm.str() );
+                }
+
+                return true;
             }
-            return true;
         }
         else if ( parameters.front().compareNoCase( "SHOW" ) == 0 )
         {
-            return true;//????
+            //  /NODE IOP SHOW {iop_name}
+            if ( parameters.size() == 2 )
+            {
+                IOProcessor* piop = dynamic_cast<IOProcessor*>( pNodeTable->getNode( parameters.back() ) );
+                if ( piop == 0 )
+                    sendOutput( "Error:No IOP with the given name" );
+                else
+                {
+                    sendOutput( " IOP " + piop->getName() + " contains:" );
+                    const Node::DESCENDANTS& chmods = piop->getDescendants();
+                    for ( auto itcm = chmods.begin(); itcm != chmods.end(); ++itcm )
+                    {
+                        std::stringstream strm;
+                        strm << "  [" << itcm->first << "]:" << itcm->second->getName();
+                        sendOutput( strm.str() );
+                    }
+                }
+
+                return true;
+            }
         }
     }
 
-    std::cout << SyntaxErrorMsg << std::endl;
+    sendOutput( SyntaxErrorMsg );
     return false;
 }
 
@@ -800,150 +939,196 @@ nodeSubSystemHandler
     const std::list<SuperString>& parameters
 )
 {
-//  "/NODE SUBSYSTEM CREATE {subsystem_name} [ DISK | TAPE | SYMBIONT ] [ REDUNDANT ]\n"
-//  "/NODE SUBSYSTEM [ DELETE | DETACH | SHOW ] {subsystem_name}\n"
-//  "/NODE SUBSYSTEM LIST\n"
-//  "/NODE SUBSYSTEM ATTACH {subsystem_name} {chmod_name} [ {chmod_name} ]\n",
-    std::cout << "Not yet implemented" << std::endl;
-    return false;//????
+    auto itparm = parameters.begin();
+    if ( itparm != parameters.end() )
+    {
+        if ( itparm->compareNoCase( "ATTACH" ) == 0 )
+        {
+            //  /NODE SUBSYSTEM ATTACH {subsystem_name} {chmod_name} [ {chmod_name} ]
+            ++itparm;
+            if ( (parameters.size() >= 3) && (parameters.size() <= 4) )
+            {
+                SuperString subName = *(itparm++);
+                std::vector<SuperString> chmodNames;
+                chmodNames.push_back(*(itparm++));
+                if ( parameters.size() == 4 )
+                    chmodNames.push_back(*(itparm++));
+
+                PersistableNodeTable::Result result = pNodeTable->connectSubSystem( subName, chmodNames );
+                if ( result != PersistableNodeTable::Result::Success )
+                {
+                    std::stringstream strm;
+                    strm << "Error:" << PersistableNodeTable::getResultString( result );
+                    sendOutput( strm.str() );
+                    return false;
+                }
+
+                sendOutput( "SubSystem attached" );
+                return true;
+            }
+        }
+        else if ( itparm->compareNoCase( "CREATE" ) == 0 )
+        {
+            //  /NODE SUBSYSTEM CREATE {subsystem_name} [ DISK | TAPE | SYMBIONT ] [ REDUNDANT ]
+            if ( (parameters.size() >= 3) && (parameters.size() <= 4) )
+            {
+                ++itparm;
+                SuperString subName = *itparm;
+                ++itparm;
+                SuperString subType = *itparm;
+                ++itparm;
+                bool redundant = false;
+                if ( itparm != parameters.end() )
+                {
+                    if ( itparm->compareNoCase( "REDUNDANT" ) == 0 )
+                        redundant = true;
+                    else
+                    {
+                        sendOutput( SyntaxErrorMsg );
+                        return false;
+                    }
+                }
+
+                Controller::ControllerType ctlType;
+                if ( subType.compareNoCase( "DISK" ) == 0 )
+                    ctlType = Controller::ControllerType::DISK;
+#if 0   //TODO:SYM
+                else if ( subType.compareNoCase( "SYMBIONT" ) == 0 )
+                    ctlType = Controller::ControllerType::SYMBIONT;
+#endif
+#if 0   //TODO:TAPE
+                else if ( subType.compareNoCase( "TAPE" ) == 0 )
+                    ctlType = Controller::ControllerType::TAPE;
+#endif
+                else
+                {
+                    sendOutput( SyntaxErrorMsg );
+                    return false;
+                }
+
+                PersistableNodeTable::Result result = pNodeTable->createSubSystem( subName, ctlType, redundant );
+                if ( result != PersistableNodeTable::Result::Success )
+                {
+                    std::stringstream strm;
+                    strm << "Error:" << PersistableNodeTable::getResultString( result );
+                    sendOutput( strm.str() );
+                    return false;
+                }
+
+                sendOutput( "SubSystem created" );
+                return true;
+            }
+        }
+        else if ( itparm->compareNoCase( "DELETE" ) == 0 )
+        {
+            //  /NODE SUBSYSTEM DELETE {subsystem_name}
+            if ( parameters.size() == 2 )
+            {
+                ++itparm;
+                SuperString subName = *itparm;
+                PersistableNodeTable::Result result = pNodeTable->deleteSubSystem( subName );
+                if ( result != PersistableNodeTable::Result::Success )
+                {
+                    std::stringstream strm;
+                    strm << "Error:" << PersistableNodeTable::getResultString( result );
+                    sendOutput( strm.str() );
+                    return false;
+                }
+
+                sendOutput( "SubSystem deleted" );
+                return true;
+            }
+        }
+        else if ( itparm->compareNoCase( "DETACH" ) == 0 )
+        {
+            //  /NODE SUBSYSTEM DETACH {subsystem_name}
+            ++itparm;
+            if ( parameters.size() == 2 )
+            {
+                PersistableNodeTable::Result result = pNodeTable->disconnectSubSystem( *itparm );
+                if ( result != PersistableNodeTable::Result::Success )
+                {
+                    std::stringstream strm;
+                    strm << "Error:" << PersistableNodeTable::getResultString( result );
+                    sendOutput( strm.str() );
+                    return false;
+                }
+
+                sendOutput( "SubSystem detached" );
+                return true;
+            }
+        }
+        else if ( itparm->compareNoCase( "LIST" ) == 0 )
+        {
+            //  /NODE SUBSYSTEM LIST
+            if ( parameters.size() == 1 )
+            {
+                const PersistableNodeTable::SUBSYSTEMS& subsystems = pNodeTable->getSubSystems();
+                for ( auto it = subsystems.begin(); it != subsystems.end(); ++it )
+                {
+                    SubSystem* psub = it->second;
+                    std::stringstream strm;
+                    strm << "  " << psub->getName();
+                    strm << "  (" << psub->getControllers().front()->getControllerTypeString() << ")";
+                    sendOutput( strm.str() );
+                }
+
+                return true;
+            }
+        }
+        else if ( itparm->compareNoCase( "SHOW" ) == 0 )
+        {
+            //  /NODE SUBSYSTEM SHOW {subsystem_name}
+            if ( parameters.size() == 2 )
+            {
+                ++itparm;
+                SuperString subName = *itparm;
+
+                SubSystem* psub = pNodeTable->getSubSystem( subName );
+                if ( psub == 0 )
+                {
+                    sendOutput( "Error:No subsystem found with that name" );
+                    return false;
+                }
+
+                const std::list<Controller*>& controllers = psub->getControllers();
+                const std::list<Device*>& devices = psub->getDevices();
+
+                std::stringstream strm;
+                strm << "Subsystem " << psub->getName();
+                strm << "  (" << controllers.front()->getControllerTypeString() << ")";
+                sendOutput( strm.str() );
+
+                strm.str("");
+                strm << "  Attached to: ";
+                const Node::ANCESTORS& channelModules = controllers.front()->getAncestors();
+                for ( auto itcm = channelModules.begin(); itcm != channelModules.end(); ++itcm )
+                    strm << " " << (*itcm)->getName();
+                sendOutput( strm.str() );
+
+                strm.str("");
+                strm << "  Controllers: ";
+                for ( auto itctl = controllers.begin(); itctl != controllers.end(); ++itctl )
+                    strm << " " << (*itctl)->getName();
+                sendOutput( strm.str() );
+
+                strm.str("");
+                strm << "  Devices:     ";
+                for ( auto itdev = devices.begin(); itdev != devices.end(); ++itdev )
+                    strm << " " << (*itdev)->getName();
+                sendOutput( strm.str() );
+
+                return true;
+            }
+        }
+    }
+
+    sendOutput( SyntaxErrorMsg );
+    return false;
 }
 
 
 #if 0 //OLD SHIT
-//  nodeCreateHandler()
-//
-//  Handles NODE CREATE...
-static bool
-nodeCreateHandler
-(
-    const std::list<SuperString>& parameters
-)
-{
-    //????
-    /*      "/NODE CREATE node_name PROCESSOR IOPROCESSOR upi_number\n"
-            "/NODE CREATE node_name CHANNEL_MODULE\n"
-            "/NODE CREATE node_name CONTROLLER [ DISK | SYMBIONT | TAPE ]\n"
-            "/NODE CREATE node_name DEVICE [ DISK | TAPE ] FILESYSTEM\n"
-            "/NODE CREATE node_name DEVICE [ PRINTER | PUNCH | READER ] FILESYSTEM directory\n"
-            "/NODE CREATE node_name DEVICE TERMINAL terminal_type\n",
-    */
-    std::cout << "Not yet implemented" << std::endl;
-    return false;
-}
-
-
-//  nodeDeleteHandler()
-//
-//  Handles NODE DELETE...
-static bool
-nodeDeleteHandler
-(
-    const std::list<SuperString>& parameters
-)
-{
-    /*      "/NODE DELETE node_name\n"     */
-    //????
-    std::cout << "Not yet implemented" << std::endl;
-    return false;
-}
-
-
-//  nodeListHandler()
-//
-//  Handles NODE LIST...
-static bool
-nodeListHandler
-(
-    const std::list<SuperString>& parameters
-)
-{
-    std::set<Node*> nodes;
-    for ( auto it = parameters.begin(); it != parameters.end(); ++it )
-    {
-        Node* pNode = pNodeTable->getNode( *it );
-        if ( pNode == 0 )
-        {
-            std::cout << "No node exists with name " << *it << std::endl;
-            return false;
-        }
-
-        nodes.insert( pNode );
-    }
-
-    if ( nodes.size() == 0 )
-    {
-        const std::set<Node*>& allNodes = pNodeTable->getNodeSet();
-        for ( auto it = allNodes.begin(); it != allNodes.end(); ++it )
-            nodes.insert( *it );
-    }
-
-    for ( auto it = nodes.begin(); it != nodes.end(); ++it )
-    {
-        Node* pNode = *it;
-        std::cout << "Node " << pNode->getName() << " " << pNode->getCategoryString();
-        switch ( pNode->getCategory() )
-        {
-        case Node::Category::CHANNEL_MODULE:
-            break;
-
-        case Node::Category::CONTROLLER:
-        {
-            Controller* pController = dynamic_cast<Controller*>( pNode );
-            std::cout << " " << pController->getControllerTypeString();
-            break;
-        }
-
-        case Node::Category::DEVICE:
-        {
-            Device* pDevice = dynamic_cast<Device*>( pNode );
-            std::cout << " " << pDevice->getDeviceTypeString();
-            std::cout << " " << pDevice->getDeviceModelString();
-            if ( pDevice->isReady() )
-                std::cout << " [READY]";
-            switch ( pDevice->getDeviceType() )
-            {
-            case Device::DeviceType::DISK:
-            {
-                DiskDevice* pdd = dynamic_cast<DiskDevice*>( pDevice );
-                if ( pdd->isMounted() )
-                    std::cout << " [MNTD] BlockSize=" << pdd->getBlockSize() << " Blocks=" << pdd->getBlockCount();
-                break;
-            }
-
-            case Device::DeviceType::SYMBIONT:
-                break;
-
-            case Device::DeviceType::TAPE:
-                //TODO:TAPE
-                break;
-            }
-            break;
-        }
-
-        case Node::Category::PROCESSOR:
-            break;
-        }
-        std::cout << std::endl;
-    }
-
-    return true;
-}
-
-
-//  nodeLoadHandler()
-//
-//  Handles NODE LOAD...
-static bool
-nodeLoadHandler
-(
-    const std::list<SuperString>& parameters
-)
-{
-    std::cout << "Error:Not yet implemented" << std::endl;
-    return false;
-}
-
-
 //  nodeMountHandler()
 //
 //  Handles NODE MOUNT...
@@ -1036,40 +1221,6 @@ nodeMountHandler
 }
 
 
-//  nodeSaveHandler()
-//
-//  Handles NODE SAVE...
-static bool
-nodeSaveHandler
-(
-    const std::list<SuperString>& parameters
-)
-{
-    if ( parameters.size() > 1 )
-    {
-        std::cout << SyntaxErrorMsg << std::endl;
-        return false;
-    }
-
-    std::string fileName;
-    if ( parameters.size() == 1 )
-        fileName = parameters.front();
-    else
-        fileName.append( NODE_CONFIG_FILE_NAME );
-
-    if ( !pNodeTable->save( fileName ) )
-    {
-        std::cout << "Error saving node config:"
-                << pNodeTable->getLastErrorMessage()
-                << std::endl;
-        return false;
-    }
-
-    std::cout << "Node configuration saved" << std::endl;
-    return true;
-}
-
-
 //  nodeUnmountHandler()
 //
 //  Handles NODE UNMOUNT...
@@ -1127,11 +1278,12 @@ quitHandler
     const std::list<SuperString>& parameters
 )
 {
+    //  /QUIT [ FORCE ]
     bool forceFlag = false;
 
     if ( parameters.size() > 1 )
     {
-        std::cout << SyntaxErrorMsg << std::endl;
+        sendOutput( SyntaxErrorMsg );
         return false;
     }
     else if ( parameters.size() == 1 )
@@ -1140,29 +1292,32 @@ quitHandler
             forceFlag = true;
         else
         {
-            std::cout << SyntaxErrorMsg << std::endl;
+            sendOutput( SyntaxErrorMsg );
             return false;
         }
     }
 
     //  Is an EXEC running?
-    if ( Panel.isExecLoaded() && Panel.isExecRunning() )
+    if ( (CallDepth == 0) && Panel.isExecLoaded() && Panel.isExecRunning() )
     {
         if ( !forceFlag )
         {
-            std::cout << "Error:Cannot quit with exec running." << std::endl;
+            sendOutput( "Error:Cannot quit with exec running." );
             return false;
         }
 
-        std::cout << "Halting exec..." << std::endl;
+        sendOutput( "Halting exec..." );
         Panel.haltExec();
     }
 
+    //  Is either the hardware or software config updated and unsaved?
+    //????
+
     TermFlag = true;
     if ( CallDepth > 0 )
-        std::cout << "Exiting script" << std::endl;
+        sendOutput( "Exiting script" );
     else
-        std::cout << "Terminating..." << std::endl;
+        sendOutput( "Terminating..." );
     return true;
 }
 
@@ -1252,7 +1407,7 @@ processCommand
     auto it = Commands.find( command );
     if ( it == Commands.end() )
     {
-        std::cout << "Error:Command '/" << command << "' not recognized" << std::endl;
+        sendOutput( "Error:Command '/" + command + "' not recognized" );
         return false;
     }
 
@@ -1266,7 +1421,7 @@ processCommand
         if ( handler == 0 )
         {
             //  Oops - we have nothing to call.
-            std::cout << "Internal Error" << std::endl;
+            sendOutput( "Internal Error" );
             return false;
         }
 
@@ -1284,7 +1439,7 @@ processCommand
         //  No sub-command given - if there isn't a command handler for the main command, oops.
         if ( handler == 0 )
         {
-            std::cout << SyntaxErrorMsg << std::endl;
+            sendOutput( SyntaxErrorMsg );
             return false;
         }
 
@@ -1298,7 +1453,7 @@ processCommand
     if ( itsub == it->second->m_pSubCommands->end() )
     {
         //  Oops - subcommand not recognized.
-        std::cout << SyntaxErrorMsg << std::endl;
+        sendOutput( SyntaxErrorMsg );
         return false;
     }
 
@@ -1307,7 +1462,7 @@ processCommand
     if ( handler == 0 )
     {
         //  Oops - we have nothing to call.
-        std::cout << "Internal Error" << std::endl;
+        sendOutput( "Internal Error" );
         return false;
     }
 
@@ -1316,16 +1471,18 @@ processCommand
 }
 
 
-//  sendCallMessage()
+//  sendOutput()
 //
 //  Convenience method for sending call-depth-tagged output to the console
-static void
-sendCallMessage
+static inline void
+sendOutput
 (
     const std::string&  message
 )
 {
-    std::cout << "[" << CallDepth << "]:" << message << std::endl;
+    if ( CallDepth > 0 )
+        std::cout << "[" << CallDepth << "]:";
+    std::cout << message << std::endl;
 }
 
 
@@ -1335,21 +1492,24 @@ sendCallMessage
 static void
 showJumpKeysSet()
 {
-    std::cout << "Jump Keys Set:" << std::endl;
+    sendOutput( "Jump Keys Set:" );
     bool set = false;
+    std::stringstream strm;
     for ( PanelInterface::JUMPKEY jk = 1; jk <= 36; ++jk )
     {
         if ( Panel.getJumpKey( jk ) )
         {
-            std::cout << " " << std::setw( 2 ) << std::setfill( '0' ) << jk;
+            strm << " " << std::setw( 2 ) << std::setfill( '0' ) << jk;
             set = true;
         }
     }
 
     if ( !set )
-        std::cout << " <NONE>";
-    std::cout << std::endl;
+        sendOutput( " <NONE>" );
+    else
+        sendOutput( strm.str() );
 }
+
 
 
 //  ----------------------------------------------------------------------------
@@ -1372,7 +1532,11 @@ main
 
     //  Initialization
     pNodeTable = new PersistableNodeTable();
-#if 0 // obsolete
+    std::string hardwareFileName = NODE_CONFIG_FILE_NAME;
+    if ( pNodeTable->load( hardwareFileName ) != PersistableNodeTable::Result::Success )
+        std::cout << "Warning:Unable to load default configuration" << std::endl;
+
+#if 0 // for reference - remove this later
     {
         IOProcessor* piop0 = new IOProcessor( "IOP0" );
         ChannelModule* pchmod00 = new ChannelModule( "CHM0-0" );
@@ -1423,7 +1587,7 @@ main
     }
 #endif
 
-    pConfiguration = new Configuration();
+    pConfiguration = new Configuration();//???? need to load this from config file
 
     //  Set up RPC listener
     std::string s = "NetServer";
@@ -1453,21 +1617,26 @@ main
             {
                 //  Not a command, it must be an attempt to communicate with the console
                 if ( !Panel.isExecLoaded() || !Panel.isExecRunning() )
-                    std::cout << "EXEC is not loaded or not running - console input ignored." << std::endl;
+                    sendOutput( "EXEC is not loaded or not running - console input ignored." );
                 else
                     Console.injectConsoleMessage( rawInput );
                 continue;
             }
         }
 
-        std::cout << "Type /HELP for assistance" << std::endl;
+        sendOutput( "Type /HELP for assistance" );
     }
 
     //  Termination
-    //???? lose all Node entries...
 
     delete ns;//????
 
+    //???? lose all Node entries...
+
+    delete pNodeTable;
+    pNodeTable = 0;
+    delete pConfiguration;
+    pConfiguration = 0;
     pLog->close();
     delete pLog;
     pLog = 0;

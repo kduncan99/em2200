@@ -1,4 +1,5 @@
 //  Task.h
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //  Represents an executing task (or program)
 

@@ -1,4 +1,5 @@
 //  NodeTable.h
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //  Loaded by emexec, and passed to Exec upon instantiation.
 //  It is conceivable that the owner (emexec) can update this while it is held by Exec;

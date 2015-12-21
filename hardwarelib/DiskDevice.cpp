@@ -1,4 +1,5 @@
 //  DiskDevice.cpp
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //  DiskDevice abstract base class definition
 

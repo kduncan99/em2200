@@ -1,4 +1,5 @@
 //  DiskAllocationTable.h
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //  Tracks file allocation information for a particular disk pack / device.
 //  We do it this way instead of dealing with bitmaps, because it's easier to manipulate.

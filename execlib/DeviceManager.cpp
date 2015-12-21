@@ -1,4 +1,5 @@
 //	DeviceManager.cpp
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //	Implementation of DeviceManager class
 
@@ -715,8 +716,8 @@ DeviceManager::startup()
         {
             NodeEntry* pParentEntry = itne->second;
             Node* pParentNode = pParentEntry->m_pNode;
-            const Node::CHILDNODES& childNodes = pParentNode->getChildNodes();
-            for ( Node::CITCHILDNODES itcn = childNodes.begin(); itcn != childNodes.end(); ++itcn )
+            const Node::DESCENDANTS& childNodes = pParentNode->getDescendants();
+            for ( auto itcn = childNodes.begin(); itcn != childNodes.end(); ++itcn )
             {
                 Node::NODE_ADDRESS childAddress = itcn->first;
                 NodeEntry* pChildEntry = getEntry( itcn->second );

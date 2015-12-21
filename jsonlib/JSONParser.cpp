@@ -1,4 +1,5 @@
 //  JSONParser.cpp
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //  Implementation of JSONParser class
 
@@ -160,7 +161,7 @@ JSONParser::parseStringEscape()
         if ( getRemainingCharacterCount() < 4 )
         {
             m_Index = initialIndex;
-            throw JSONStringEscapeException();
+            throw new JSONStringEscapeException();
         }
 
         for ( unsigned int dx = 0; dx < 4; ++dx )
@@ -169,7 +170,7 @@ JSONParser::parseStringEscape()
             if ( !isxdigit( nextCh ) )
             {
                 m_Index = initialIndex;
-                throw JSONStringEscapeException();
+                throw new JSONStringEscapeException();
             }
 
             result += nextCh;
@@ -179,7 +180,7 @@ JSONParser::parseStringEscape()
     }
 
     m_Index = initialIndex;
-    throw JSONStringEscapeException();
+    throw new JSONStringEscapeException();
 }
 
 
@@ -263,7 +264,7 @@ JSONParser::parseArray()
     bool allowValue = true;
     bool allowComma = true;
     bool allowEnd = true;
-    bool foundEnd = true;
+    bool foundEnd = false;
     while ( !atEnd() && !foundEnd )
     {
         skipWhiteSpace();
@@ -301,8 +302,11 @@ JSONParser::parseArray()
         }
 
         //  Something is wrong.
-        throw JSONArrayFormatException();
+        throw new JSONArrayFormatException();
     }
+
+    if ( !foundEnd )
+        throw new JSONArrayFormatException();
 
     return pArray;
 }
@@ -358,6 +362,8 @@ JSONParser::parseNumber()
         ParseNumberTransition* pTransition = findTransition( pnState, ch );
         if ( pTransition == 0 )
             pnState = PNS_SYNTAX_ERROR;
+        else
+            pnState = pTransition->_nextState;
 
         if ( !isTerminalState( pnState ) )
         {
@@ -374,7 +380,7 @@ JSONParser::parseNumber()
     else if ( pnState == PNS_SYNTAX_ERROR )
     {
         m_Index = initialIndex;
-        throw JSONNumberFormatException();
+        throw new JSONNumberFormatException();
     }
     else
         return new JSONNumberValue( value );
@@ -392,6 +398,8 @@ JSONParser::parseObject()
     unsigned int initialIndex = m_Index;
     if ( atEnd() || ( m_pText->at( m_Index ) != '{' ) )
         return 0;
+
+    //  skip opening bracket now that we've found it
     m_Index += 1;
 
     JSONObjectValue* pObject = new JSONObjectValue();
@@ -411,10 +419,13 @@ JSONParser::parseObject()
             delete pObject;
             delete pKey;
             m_Index = initialIndex;
-            throw JSONObjectFormatException();
+            throw new JSONObjectFormatException();
         }
 
-        //  We found a key and a colon, now we need a value
+        //  We found a key and a colon - adjust the index to account for the colon
+        ++m_Index;
+
+        //  Now go look for a value of any type
         skipWhiteSpace();
         JSONValue* pValue = parseValue();
         if ( pValue == 0 )
@@ -422,7 +433,7 @@ JSONParser::parseObject()
             delete pObject;
             delete pKey;
             m_Index = initialIndex;
-            throw JSONObjectFormatException();
+            throw new JSONObjectFormatException();
         }
 
         pObject->store( pKey->getValueAsString(), pValue );
@@ -441,7 +452,7 @@ JSONParser::parseObject()
     {
         delete pObject;
         m_Index = initialIndex;
-        throw JSONObjectFormatException();
+        throw new JSONObjectFormatException();
     }
 
     m_Index += 1;
@@ -456,7 +467,7 @@ JSONValue*
 JSONParser::parseString()
 {
     unsigned int initialIndex = m_Index;
-    if ( !atEnd() || ( m_pText->at( m_Index ) != '"' ) )
+    if ( atEnd() || ( m_pText->at( m_Index ) != '"' ) )
         return 0;
     m_Index += 1;
 
@@ -480,7 +491,7 @@ JSONParser::parseString()
         else if ( ch < ' ' )
         {
             m_Index = initialIndex;
-            throw JSONStringContentException();
+            throw new JSONStringContentException();
         }
         else
             value += ch;
@@ -489,7 +500,7 @@ JSONParser::parseString()
     if ( !endDelimiter )
     {
         m_Index = initialIndex;
-        throw JSONStringUnterminatedException();
+        throw new JSONStringUnterminatedException();
     }
 
     return new JSONStringValue( value );
@@ -540,7 +551,7 @@ JSONParser::isWhiteSpace
     char     ch
 )
 {
-    return ( ( ch == ' ' ) || ( ch == '\n' ) || ( ch == '\r' ) );
+    return ( ( ch == ' ' ) || ( ch == '\n' ) || ( ch == '\r' ) || ( ch == 0x08 ) );
 }
 
 

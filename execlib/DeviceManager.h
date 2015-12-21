@@ -1,4 +1,5 @@
 //  DeviceManager.h header file
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //  The DeviceManager acts as a sort of gate-keeper for everything traditionally related
 //  to the Master Configuration Table.  This would seem to be in the domain of

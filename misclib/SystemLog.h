@@ -1,4 +1,5 @@
 //	SystemLog.h - header file for generic system log
+//  Copyright (c) 2015 by Kurt Duncan
 
 
 

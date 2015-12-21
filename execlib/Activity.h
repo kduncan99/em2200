@@ -1,4 +1,5 @@
 //  Activity.h header file representing an Activity
+//  Copyright (c) 2015 by Kurt Duncan
 
 
 

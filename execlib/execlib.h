@@ -1,5 +1,6 @@
 //  execlib header file
 //  All execlib clients should include this, and only this header file (from this library, I mean)
+//  Copyright (c) 2015 by Kurt Duncan
 
 
 

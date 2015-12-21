@@ -1,4 +1,5 @@
 //  jsonlib.h
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //  A JSON parser and encoder library which can handle UTF-8, UTF-16, and UTF-32.
 //  library header file - clients should include this and only this file
@@ -6,6 +7,7 @@
 
 
 #include    <exception>
+#include    <iostream>
 #include    <list>
 #include    <map>
 #include    <string>

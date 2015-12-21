@@ -1,4 +1,5 @@
 //	UPKeyin.h
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //  UP keyin handler
 

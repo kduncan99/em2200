@@ -1,4 +1,5 @@
 //  UserRunInfo class declaration
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //  RunInfo generics for everything that isn't the EXEC
 //  We keep the READ symbiont buffers here, not because we expect to use them per se,

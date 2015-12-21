@@ -1,4 +1,5 @@
 //  TDate.cpp
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //  Some very simple bits dealing specifically with the ER TDATE$ format
 

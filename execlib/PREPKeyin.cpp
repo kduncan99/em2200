@@ -1,4 +1,5 @@
 //  PREPKeyin.cpp
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //  Handles the PREP keyin
 //  This will format the disk (if appropriate) and write the label, then call MFD to initialize the pack.

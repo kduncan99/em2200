@@ -1,4 +1,5 @@
 //	UPKeyin.cpp
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //	Handles the UP keyin
 
@@ -48,11 +49,11 @@ UP,XCACHE xpcname/SHARED
     Enables caching with the specified XPC (xpcname).
     Use the UP,XCACHE xpcname keyin to enable local and shared caching for each host
     using the XPC.
-    Use the UP,XCACHE xpcname/LOCAL keyin to enable a host’s local caching using
+    Use the UP,XCACHE xpcname/LOCAL keyin to enable a host's local caching using
     the XPC. If local caching was disabled using the DN,XCACHE xpcname/LOCAL
     keyin, local caching can only be enabled using an UP,XCACHE xpcname/LOCAL
     keyin.
-    Use the UP,XCACHE xpcname/SHARED keyin to enable a host’s shared caching
+    Use the UP,XCACHE xpcname/SHARED keyin to enable a host's shared caching
     using the XPC. Once specified, shared caching can be disabled using a DN,XCACHE
     xpcname/SHARED keyin or a DN,XCACHE xpcname keyin. The UP,XCACHE
     xpcname/SHARED keyin can be issued when the XPC is in MHM mode.

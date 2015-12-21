@@ -1,4 +1,6 @@
 //  Lockable.h
+//  Copyright (c) 2015 by Kurt Duncan
+//
 //  Interface to make another class lockable...
 //  Uses a pointer to a std::recursive_mutex because:
 //      a thread may recurse on locking

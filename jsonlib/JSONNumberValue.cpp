@@ -1,4 +1,5 @@
 //  JSONNumberValue.cpp
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //  Implements the JSONNumberValue class
 

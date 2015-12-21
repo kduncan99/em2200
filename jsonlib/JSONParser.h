@@ -1,4 +1,5 @@
 //  JSONParser.h
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //  Describes the parser object which parses JSONValue objects out of a properly encoded string
 

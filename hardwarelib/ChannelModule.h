@@ -1,4 +1,5 @@
 //  ChannelModule.h
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //  This is where all the conversion is done from a low-level Exec IO request,
 //  to device IO requests (including data conversions/packing).

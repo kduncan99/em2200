@@ -1,4 +1,5 @@
 //  Subset of FacilitiesManager implementation
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //  This file includes functions dealing with the release of facilities items
 

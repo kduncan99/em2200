@@ -1,4 +1,5 @@
 //	DUKeyin.h
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //	DU keyin handler
 

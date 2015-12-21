@@ -1,4 +1,5 @@
 //  CoarseSchedulerActivity
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //  Regularly polls all batch and Demand RunInfo objects, to see if any Control Mode processing needs done.
 //  This activity runs under the Exec RunInfo context.

@@ -1,4 +1,5 @@
 //  Implementation of SubSystem class
+//  Copyright (c) 2015 by Kurt Duncan
 
 
 
@@ -8,6 +9,9 @@
 
 //  Public methods
 
+//  removeDevice()
+//
+//  Detaches a device from all controllers and removes it from the subsystem
 void
 SubSystem::removeDevice
 (
@@ -17,16 +21,7 @@ SubSystem::removeDevice
     for ( auto itctl = m_Controllers.begin(); itctl != m_Controllers.end(); ++itctl )
     {
         Controller* pctl = *itctl;
-        for ( auto itchild = pctl->getChildNodes().begin(); itchild != pctl->getChildNodes().end(); ++itchild )
-        {
-            if ( itchild->second == pDevice )
-            {
-                pctl->deregisterChildNode( itchild->first );
-                //  we can stop on the first find, since we only allow one connection
-                //  from a ctl to a device.
-                break;
-            }
-        }
+        Node::disconnect( pctl, pDevice );
     }
 
     for ( auto itdev = m_Devices.begin(); itdev != m_Devices.end(); ++itdev )

@@ -1,4 +1,5 @@
 //  IoManager.cpp
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //  Implementation of IoManager class.
 //

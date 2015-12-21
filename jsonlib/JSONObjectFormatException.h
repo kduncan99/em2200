@@ -1,4 +1,5 @@
 //  JSONObjectFormatException.h
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //  We were partially into an object, and hit something we didn't expect
 

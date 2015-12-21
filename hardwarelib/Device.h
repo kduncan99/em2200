@@ -1,4 +1,5 @@
 //	Device.h
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //  Device base class declaration
 //  A Device is the lowest unit in an IO chain.

@@ -1,4 +1,5 @@
 //  TDate.h
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //  Word36 representing system time and date in ER TDATE$ format
 

@@ -1,4 +1,5 @@
 //  RunInfo class declaration
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //  Whoever needs to use this, should attach() it (which basically just locks it),
 //  and then detach() it when done (which unlocks it).

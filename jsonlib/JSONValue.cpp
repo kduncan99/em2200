@@ -1,4 +1,5 @@
 //  JSONValue.cpp
+//  Copyright (c) 2015 by Kurt Duncan
 //
 //  Default methods used for cases where the superclass does not implement a particular function.
 //  In all cases, we throw a JSONTypeException.

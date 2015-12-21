@@ -1,3 +1,6 @@
+Developer Notes for em2200
+Copyright (c) 2015 by Kurt Duncan
+
 --------------------------------------------------------------------------------
 Goals (future)
 
@@ -150,7 +153,8 @@ Goals (release 0.2)
 (inprogress) SSP executable
     command line functionality for panel, console, system log, configuration, and hardware inventory
     Automatic reboot if JK3 is not set and Exec stops
-    Keep in mind, later it needs full functionality over RPC
+    RPC for control via web, limited to localhost
+    JavaScript web client
 (inprogress) DeviceManager
     Needs to support UP, DN, RV, SU keyins (SU done)
     Is it possible for h/w nodes to change out from under us during execution? NO, DON'T ALLOW THIS
@@ -265,6 +269,7 @@ deferred:
 Working on:
 
 emssp
+    hardware config manipuation
 
 Do we really need DataHandler in misclib?
 
